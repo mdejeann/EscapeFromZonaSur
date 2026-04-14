@@ -105,6 +105,7 @@ Este proyecto usa **7 agentes especializados** de GitHub Copilot. El archivo [`d
 ## 🗂️ Tablero de proyecto y documentación
 
 - 📋 Tablero completo: [`DASHBOARD.md`](DASHBOARD.md)
+- 🎮 Game Design Document: [`docs/gdd/GDD.md`](docs/gdd/GDD.md)
 - 🤖 Contexto de agentes (Copilot Workspace): [`docs/AGENTS.md`](docs/AGENTS.md)
 - 🏗️ Arquitectura del proyecto: [`docs/architecture.md`](docs/architecture.md)
 

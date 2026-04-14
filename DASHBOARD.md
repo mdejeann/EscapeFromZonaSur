@@ -128,6 +128,7 @@
 | 6 | Instalar Beehave plugin | E6 | @ai | 🟡 Media |
 | 7 | `AudioManager.gd` autoload + buses | E8 | @audio | 🟡 Media |
 | 8 | `GameTheme.tres` con paleta de colores | E9 | @ui | 🟡 Media |
+| 9 | Definir balance preliminar de armas y TTK | E2 | @game-design | 🟡 Media |
 
 ---
 
@@ -159,6 +160,7 @@
 | 14 | `src/enemies/EnemyBase.gd` + `SensorComponent.gd` | E6 | ✅ |
 | 15 | `src/world/ExtractionZone.gd` + `LootContainer.gd` | E3 | ✅ |
 | 16 | `.gitignore` para Godot 4 | E1 | ✅ |
+| 17 | `docs/gdd/GDD.md` — Game Design Document v1 (visión, mecánicas, balance, mapas, facciones, economía) | E1 | ✅ |
 
 ---
 
