@@ -70,8 +70,9 @@ func _update_vision(delta: float) -> void:
 
 
 func _increase_suspicion(amount: float) -> void:
+	var was_below_threshold := suspicion < 100.0
 	suspicion = min(100.0, suspicion + amount)
-	if suspicion >= 100.0:
+	if suspicion >= 100.0 and was_below_threshold:
 		EventBus.enemy_spotted_player.emit(get_parent().global_position, get_parent().faction)
 		EventBus.alert_raised.emit(get_parent().global_position, get_parent().faction)
 

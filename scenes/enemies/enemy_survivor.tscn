@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://enemy_survivor_scene"]
+
+[ext_resource type="Script" path="res://src/enemies/EnemyBase.gd" id="1"]
+[ext_resource type="Script" path="res://src/player/HealthComponent.gd" id="2"]
+[ext_resource type="Script" path="res://src/enemies/SensorComponent.gd" id="3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_surv"]
+radius = 0.35
+height = 1.7
+
+[node name="EnemySurvivor" type="CharacterBody3D"]
+script = ExtResource("1")
+faction = "sobrevivientes"
+loot_table_id = "sobrevivientes"
+move_speed = 2.5
+patrol_radius = 6.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+shape = SubResource("CapsuleShape3D_surv")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2")
+max_health = 60
+is_player = false
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+target_desired_distance = 1.0
+avoidance_enabled = true
+radius = 0.4
+
+[node name="SensorComponent" type="Node3D" parent="."]
+script = ExtResource("3")
+vision_range = 10.0
+vision_angle = 70.0
+suspicion_rate = 15.0
+suspicion_decay = 20.0
+hearing_range = 30.0

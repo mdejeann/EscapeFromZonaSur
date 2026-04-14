@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://enemy_base_scene"]
+
+[ext_resource type="Script" path="res://src/enemies/EnemyBase.gd" id="1"]
+[ext_resource type="Script" path="res://src/player/HealthComponent.gd" id="2"]
+[ext_resource type="Script" path="res://src/enemies/SensorComponent.gd" id="3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_base"]
+radius = 0.4
+height = 1.8
+
+[node name="EnemyBase" type="CharacterBody3D"]
+script = ExtResource("1")
+faction = "generic"
+loot_table_id = "generic"
+move_speed = 3.0
+patrol_radius = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_base")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2")
+max_health = 80
+is_player = false
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+target_desired_distance = 1.0
+avoidance_enabled = true
+radius = 0.5
+
+[node name="SensorComponent" type="Node3D" parent="."]
+script = ExtResource("3")
+vision_range = 15.0
+vision_angle = 90.0
+suspicion_rate = 20.0
+suspicion_decay = 10.0
+hearing_range = 25.0
