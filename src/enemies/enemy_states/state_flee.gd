@@ -21,9 +21,9 @@ var _original_speed: float = 0.0
 
 
 ## Llamado al entrar al estado.
-func enter(enemy: CharacterBody3D, threat_pos: Vector3 = Vector3.ZERO) -> void:
+func enter(enemy: CharacterBody3D, threat_position: Vector3 = Vector3.ZERO) -> void:
 	_timer = 0.0
-	_threat_position = threat_pos
+	_threat_position = threat_position
 	_original_speed = enemy.move_speed
 	enemy.move_speed *= flee_speed_multiplier
 

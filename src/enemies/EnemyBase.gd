@@ -154,8 +154,8 @@ func _change_state(new_state: State, context: Variant = null) -> void:
 			_state_flee.enter(self, threat_pos)
 
 
-func _process_patrol(_delta: float) -> void:
-	_state_patrol.process(self, _delta)
+func _process_patrol(delta: float) -> void:
+	_state_patrol.process(self, delta)
 
 	# Verificar si el sensor ha alcanzado suspición máxima
 	if sensor.suspicion >= 100.0:

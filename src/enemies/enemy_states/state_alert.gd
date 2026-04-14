@@ -18,12 +18,12 @@ var _arrived: bool = false
 var _look_timer: float = 0.0
 
 
-## Llamado al entrar al estado. receive_position es el punto a investigar.
-func enter(enemy: CharacterBody3D, investigate_pos: Vector3 = Vector3.ZERO) -> void:
+## Llamado al entrar al estado. investigate_position es el punto a investigar.
+func enter(enemy: CharacterBody3D, investigate_position: Vector3 = Vector3.ZERO) -> void:
 	_timer = 0.0
 	_arrived = false
 	_look_timer = 0.0
-	_investigate_position = investigate_pos
+	_investigate_position = investigate_position
 	if _investigate_position != Vector3.ZERO:
 		enemy.nav_agent.target_position = _investigate_position
 
