@@ -135,7 +135,8 @@
 
 | # | Tarea | Épica | Agente | Inicio |
 |---|-------|-------|--------|--------|
-| — | *Vacío — Proyecto en kick-off* | — | — | — |
+| 24 | CSG blockout de Adrogue (4 zonas + NavMesh) | E3 | @world | Sprint 1 |
+| 25 | Beehave plugin + behavior tree scenes por facción | E6 | @ai | Sprint 1 |
 
 ---
 
@@ -159,6 +160,14 @@
 | 14 | `src/enemies/EnemyBase.gd` + `SensorComponent.gd` | E6 | ✅ |
 | 15 | `src/world/ExtractionZone.gd` + `LootContainer.gd` | E3 | ✅ |
 | 16 | `.gitignore` para Godot 4 | E1 | ✅ |
+| 17 | 7 recursos `.tres` de ítems en `assets/data/items/` | E5 | ✅ |
+| 18 | `src/systems/inventory/StashSystem.gd` — persistencia de stash entre raids | E5 | ✅ |
+| 19 | `src/systems/audio/FootstepSystem.gd` + `AmbientZoneAudio.gd` | E8 | ✅ |
+| 20 | `src/ui/HUD.gd` + `InventoryUI.gd` + `MainMenu.gd` | E9 | ✅ |
+| 21 | Escenas `.tscn`: player, HUD, inventario, menú principal | E2/E9 | ✅ |
+| 22 | Hojas de behavior tree: `bt_actions/` + `bt_conditions/` (6 scripts) | E6 | ✅ |
+| 23 | `src/enemies/EnemySpawner.gd` — spawner dinámico por zona/facción | E6 | ✅ |
+| 24 | `docs/art-pipeline.md` — pipeline Blender → Godot + convenciones | E1 | ✅ |
 
 ---
 
@@ -179,10 +188,10 @@
 - [x] Repositorio configurado con estructura `src/` y `docs/AGENTS.md`
 - [x] `project.godot` con autoloads, input map y renderer configurados
 - [x] `EventBus.gd` con todas las señales tipadas
-- [ ] Player puede moverse, saltar, agacharse y apuntar en primera persona
+- [x] Player puede moverse, saltar, agacharse y apuntar en primera persona
 - [ ] CSG blockout de Adrogue con 4 zonas y NavMesh bakeado
-- [ ] `ItemData.gd` + 7 recursos `.tres` de ítems base
-- [ ] `InventoryComponent.gd` funcional con sistema de peso
+- [x] `ItemData.gd` + 7 recursos `.tres` de ítems base
+- [x] `InventoryComponent.gd` funcional con sistema de peso
 
 ---
 

@@ -7,6 +7,10 @@ extends Control
 
 const SETTINGS_PATH := "user://settings.cfg"
 
+const DEFAULT_SFX_VOLUME := 0.8
+const DEFAULT_MUSIC_VOLUME := 0.6
+const DEFAULT_AMBIENT_VOLUME := 0.7
+
 @onready var new_game_button: Button = $VBoxContainer/NewGameButton
 @onready var continue_button: Button = $VBoxContainer/ContinueButton
 @onready var options_button: Button = $VBoxContainer/OptionsButton
@@ -98,14 +102,14 @@ func _load_settings() -> void:
 	var config := ConfigFile.new()
 	if config.load(SETTINGS_PATH) != OK:
 		# Valores por defecto
-		sfx_slider.value = 0.8
-		music_slider.value = 0.6
-		ambient_slider.value = 0.7
+		sfx_slider.value = DEFAULT_SFX_VOLUME
+		music_slider.value = DEFAULT_MUSIC_VOLUME
+		ambient_slider.value = DEFAULT_AMBIENT_VOLUME
 		return
 
-	sfx_slider.value = config.get_value("audio", "sfx_volume", 0.8)
-	music_slider.value = config.get_value("audio", "music_volume", 0.6)
-	ambient_slider.value = config.get_value("audio", "ambient_volume", 0.7)
+	sfx_slider.value = config.get_value("audio", "sfx_volume", DEFAULT_SFX_VOLUME)
+	music_slider.value = config.get_value("audio", "music_volume", DEFAULT_MUSIC_VOLUME)
+	ambient_slider.value = config.get_value("audio", "ambient_volume", DEFAULT_AMBIENT_VOLUME)
 	fullscreen_check.button_pressed = config.get_value("display", "fullscreen", false)
 
 	# Aplicar los valores cargados

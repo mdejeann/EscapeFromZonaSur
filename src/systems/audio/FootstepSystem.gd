@@ -30,9 +30,9 @@ func _on_player_footstep(surface_type: String) -> void:
 	if player == null:
 		return
 
-	# Usar AudioManager para reproducir el SFX espacial
+	# Usar AudioManager para reproducir el SFX espacial con variación de pitch
 	var pitch := 1.0 + randf_range(-pitch_variation, pitch_variation)
-	AudioManager.play_sfx(stream, player.global_position, volume_db)
+	AudioManager.play_sfx(stream, player.global_position, volume_db + (pitch - 1.0) * 10.0)
 
 	# Emitir ruido para que los enemigos puedan escuchar los pasos
 	var loudness := 0.3  # pasos normales — bajo

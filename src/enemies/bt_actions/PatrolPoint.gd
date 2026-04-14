@@ -29,7 +29,7 @@ func tick(actor: Node, blackboard: Dictionary) -> int:
 
 	# Si estamos esperando en el punto
 	if _waiting:
-		_wait_timer += actor.get_process_delta_time()
+		_wait_timer += get_process_delta_time()
 		if _wait_timer >= wait_time:
 			_waiting = false
 			_wait_timer = 0.0

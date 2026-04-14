@@ -12,8 +12,8 @@ extends Node
 
 ## Llamado por el behavior tree cada tick.
 func tick(actor: Node, blackboard: Dictionary) -> int:
-	var target_pos: Vector3 = blackboard.get("target_position", Vector3.ZERO)
-	if target_pos == Vector3.ZERO:
+	var target_pos: Variant = blackboard.get("target_position", null)
+	if target_pos == null or not target_pos is Vector3:
 		return 0  # FAILURE — no hay objetivo
 
 	var nav_agent: NavigationAgent3D = actor.get_node("NavigationAgent3D")

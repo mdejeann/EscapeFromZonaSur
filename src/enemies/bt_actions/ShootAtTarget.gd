@@ -33,7 +33,7 @@ func tick(actor: Node, blackboard: Dictionary) -> int:
 	actor.look_at(actor.global_position + Vector3(direction.x, 0.0, direction.z), Vector3.UP)
 
 	# Controlar cadencia
-	_fire_timer += actor.get_process_delta_time()
+	_fire_timer += get_process_delta_time()
 	if _fire_timer < fire_rate:
 		return 2  # RUNNING — esperando para disparar
 
