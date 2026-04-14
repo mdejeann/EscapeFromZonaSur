@@ -32,5 +32,5 @@ extends Resource
 @export_group("Recoil")
 ## Retroceso vertical en radianes por disparo.
 @export var recoil_vertical: float = 0.04
-## Retroceso horizontal máximo en radianes por disparo (aleatório ±).
+## Retroceso horizontal máximo en radianes por disparo (aleatorio ±).
 @export var recoil_horizontal: float = 0.01

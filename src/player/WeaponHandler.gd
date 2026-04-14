@@ -91,6 +91,10 @@ func reload() -> void:
 	_is_reloading = true
 	await get_tree().create_timer(_weapon.reload_time).timeout
 
+	# Guard against node being freed during the await
+	if not is_instance_valid(self) or not is_inside_tree():
+		return
+
 	var needed := _weapon.max_ammo - _current_ammo
 	var taken := min(needed, _reserve_ammo)
 	_current_ammo += taken

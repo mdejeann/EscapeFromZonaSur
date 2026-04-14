@@ -24,7 +24,7 @@ albedo_color = Color(0.2, 0.4, 0.8, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_raycastground"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="PlayerController" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_playerctrl")
 walk_speed = 5.0
 sprint_speed = 8.0
