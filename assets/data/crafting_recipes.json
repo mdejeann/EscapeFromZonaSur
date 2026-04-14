@@ -1,0 +1,20 @@
+{
+  "recipes": [
+    {
+      "id": "craft_medkit_from_bandages",
+      "result_id": "medkit_basic",
+      "result_quantity": 1,
+      "ingredients": [
+        {"id": "bandage", "quantity": 3}
+      ]
+    },
+    {
+      "id": "craft_bandage_split",
+      "result_id": "bandage",
+      "result_quantity": 3,
+      "ingredients": [
+        {"id": "medkit_basic", "quantity": 1}
+      ]
+    }
+  ]
+}
