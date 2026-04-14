@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/systems/inventory/ItemData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "pistol_9mm"
+display_name = "Bersa Thunder 9mm"
+description = "Pistola semiautomática Bersa Thunder 9mm. Confiable y común en la zona."
+item_type = 0
+weight = 0.8
+max_stack = 1
+base_value = 5000
+has_durability = true
+max_durability = 100.0
