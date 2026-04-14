@@ -39,65 +39,74 @@ Inspirado en *Road To Vostok* y *Escape From Tarkov*, **Escape From Zona Sur** e
 
 ```
 EscapeFromZonaSur/
-├── project.godot              # Configuración del proyecto Godot
+├── project.godot              # Config Godot 4.4: autoloads, input map, renderer
 ├── README.md                  # Este archivo
 ├── DASHBOARD.md               # Tablero Trello del proyecto
 ├── .gitignore                 # Reglas de ignore para Godot
 ├── docs/
-│   ├── agents/                # Roles y READMEs de cada agente IA
-│   │   ├── README.md          # Índice de agentes
-│   │   ├── agent-game-design.md
-│   │   ├── agent-godot-core.md
-│   │   ├── agent-gameplay-systems.md
-│   │   ├── agent-ai-enemies.md
-│   │   ├── agent-art-assets.md
-│   │   ├── agent-audio.md
-│   │   ├── agent-narrative.md
-│   │   └── agent-ui-ux.md
-│   └── uml/
-│       ├── architecture.md    # Diagrama de arquitectura
-│       ├── game-flow.md       # Flujo de juego
-│       └── class-diagram.md   # Diagrama de clases principal
-├── scenes/
-│   ├── main_menu/
-│   ├── world/
-│   ├── player/
-│   ├── enemies/
-│   └── ui/
-├── scripts/
-│   ├── player/
-│   ├── enemies/
+│   ├── AGENTS.md              # ★ Contexto Copilot Workspace — 7 agentes × 4 tareas
+│   ├── architecture.md        # Jerarquía de sistemas, EventBus, CSG, Beehave
+│   └── agents/                # READMEs detallados por agente
+├── src/                       # Todo el código GDScript
+│   ├── autoloads/
+│   │   ├── EventBus.gd        # ★ Eje de comunicación entre sistemas
+│   │   └── GameState.gd       # Estado global del raid
+│   ├── player/                # PlayerController, CameraController, HealthComponent
+│   ├── enemies/               # EnemyBase, SensorComponent, bt_actions/, bt_conditions/
 │   ├── systems/
+│   │   ├── inventory/         # ItemData, InventoryComponent, StashSystem
+│   │   ├── loot/              # LootSystem
+│   │   └── audio/             # AudioManager, FootstepSystem, AmbientZoneAudio
+│   ├── world/                 # ExtractionZone, LootContainer
+│   └── ui/                    # HUD, InventoryUI, MainMenu
+├── scenes/
+│   ├── player/
+│   ├── enemies/
+│   ├── world/
+│   │   ├── adrogue/           # Primer mapa (CSG blockout → assets finales)
+│   │   └── capital_federal/   # Segundo mapa
 │   └── ui/
-└── assets/
-    ├── models/
-    ├── textures/
-    ├── audio/
-    └── fonts/
+├── assets/
+│   ├── models/
+│   ├── textures/
+│   ├── audio/
+│   ├── fonts/
+│   ├── ui/
+│   └── data/
+│       ├── items/             # *.tres ItemData resources
+│       └── loot_tables.json
+└── addons/
+    └── beehave/               # Plugin: behavior trees para @ai
 ```
 
 ---
 
 ## 🤖 Agentes de desarrollo
 
-Este proyecto usa **8 agentes especializados** de GitHub Copilot para acelerar el desarrollo. Cada agente tiene un rol específico y sus instrucciones en [`docs/agents/`](docs/agents/README.md).
+Este proyecto usa **7 agentes especializados** de GitHub Copilot. El archivo [`docs/AGENTS.md`](docs/AGENTS.md) es el contexto principal para Copilot Workspace — cargarlo al iniciar cada sesión.
 
-| Agente | Rol |
-|--------|-----|
-| 🎮 Game Designer | Diseño de mecánicas, niveles y balance |
-| ⚙️ Godot Core Dev | Motor, sistemas base, física y controles |
-| 🎒 Gameplay Systems | Inventario, loot, extracción, crafteo |
-| 🤖 AI & Enemies | IA de enemigos, facciones, pathfinding |
-| 🎨 Art & Assets | Modelos, texturas, animaciones |
-| 🔊 Audio | Efectos de sonido, música ambiental, mezcla |
-| 📖 Narrative | Historia, lore, diálogos, worldbuilding |
-| 🖥️ UI/UX | Menús, HUD, inventario visual, accesibilidad |
+| Agente | Rol | Start files |
+|--------|-----|------------|
+| ⚙️ @core | Motor base, player controller, EventBus | `src/autoloads/EventBus.gd`, `src/player/PlayerController.gd` |
+| 🌍 @world | Mapa CSG, NavMesh, zonas de loot y extracción | `scenes/world/adrogue/`, `src/world/ExtractionZone.gd` |
+| 🎒 @gameplay | Inventario, loot tables, stash, economía | `src/systems/inventory/`, `src/systems/loot/` |
+| 🤖 @ai | Facciones + Beehave behavior trees | `src/enemies/EnemyBase.gd`, `addons/beehave/` |
+| 🎨 @art | Pipeline Blender→Godot, modelos, texturas | `assets/models/`, `docs/art-pipeline.md` |
+| 🔊 @audio | Audio espacial, ambiente por zona, SFX | `src/systems/audio/AudioManager.gd` |
+| 🖥️ @ui | HUD, inventario drag-and-drop, menú | `src/ui/HUD.gd`, `scenes/ui/` |
+
+### Arquitectura clave
+- **`EventBus.gd`** (autoload): todos los sistemas se comunican solo via señales — sin referencias cruzadas entre módulos
+- **CSG blockout primero**: el mapa de Adrogue se construye con primitivas CSG antes de importar assets de Blender
+- **Beehave**: plugin de behavior trees para IA de las 4 facciones
 
 ---
 
-## 🗂️ Tablero de proyecto
+## 🗂️ Tablero de proyecto y documentación
 
-Ver el tablero completo en [`DASHBOARD.md`](DASHBOARD.md).
+- 📋 Tablero completo: [`DASHBOARD.md`](DASHBOARD.md)
+- 🤖 Contexto de agentes (Copilot Workspace): [`docs/AGENTS.md`](docs/AGENTS.md)
+- 🏗️ Arquitectura del proyecto: [`docs/architecture.md`](docs/architecture.md)
 
 ---
 

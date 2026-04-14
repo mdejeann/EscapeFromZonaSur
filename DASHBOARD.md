@@ -120,14 +120,14 @@
 
 | # | Tarea | Épica | Agente responsable | Prioridad |
 |---|-------|-------|-------------------|-----------|
-| 1 | Crear `project.godot` y estructura de carpetas | E1 | Godot Core Dev | 🔴 Alta |
-| 2 | Definir GDScript style guide | E1 | Godot Core Dev | 🔴 Alta |
-| 3 | Player FPS controller (CharacterBody3D) | E2 | Godot Core Dev | 🔴 Alta |
-| 4 | Diseño de mecánicas (GDD v1) | E1 | Game Designer | 🔴 Alta |
-| 5 | Concept art de Adrogue | E3 | Art & Assets | 🟡 Media |
-| 6 | Biblia de narrativa v1 | E7 | Narrative | 🟡 Media |
-| 7 | Setup de GitHub Actions | E1 | Godot Core Dev | 🟡 Media |
-| 8 | Prototipo de inventario (data model) | E5 | Gameplay Systems | 🟡 Media |
+| 1 | Crear `project.godot` y estructura de carpetas | E1 | @core | 🔴 Alta |
+| 2 | `EventBus.gd` con todas las señales tipadas | E1 | @core | 🔴 Alta |
+| 3 | Player FPS controller (CharacterBody3D) | E2 | @core | 🔴 Alta |
+| 4 | CSG blockout de Adrogue (4 zonas) | E3 | @world | 🔴 Alta |
+| 5 | `ItemData.gd` Resource + 7 ítems base (.tres) | E5 | @gameplay | 🔴 Alta |
+| 6 | Instalar Beehave plugin | E6 | @ai | 🟡 Media |
+| 7 | `AudioManager.gd` autoload + buses | E8 | @audio | 🟡 Media |
+| 8 | `GameTheme.tres` con paleta de colores | E9 | @ui | 🟡 Media |
 
 ---
 
@@ -144,11 +144,21 @@
 | # | Tarea | Épica | Completado |
 |---|-------|-------|-----------|
 | 1 | Crear repositorio GitHub | E1 | ✅ |
-| 2 | README del proyecto | E1 | ✅ |
-| 3 | DASHBOARD inicial | E1 | ✅ |
-| 4 | Documentación de agentes | E1 | ✅ |
-| 5 | Diagramas UML iniciales | E1 | ✅ |
-| 6 | Estructura base de carpetas Godot | E1 | ✅ |
+| 2 | `README.md` del proyecto | E1 | ✅ |
+| 3 | `DASHBOARD.md` inicial | E1 | ✅ |
+| 4 | `docs/AGENTS.md` — contexto Copilot Workspace (7 agentes × 4 tareas) | E1 | ✅ |
+| 5 | `docs/architecture.md` — jerarquía, EventBus, CSG, Beehave | E1 | ✅ |
+| 6 | `project.godot` — Godot 4.4 config, autoloads, input map | E1 | ✅ |
+| 7 | `src/autoloads/EventBus.gd` — señales tipadas | E1 | ✅ |
+| 8 | `src/autoloads/GameState.gd` — estado del raid | E1 | ✅ |
+| 9 | `src/player/PlayerController.gd` — esqueleto FPS | E2 | ✅ |
+| 10 | `src/player/CameraController.gd` + `HealthComponent.gd` | E2 | ✅ |
+| 11 | `src/systems/inventory/ItemData.gd` + `InventoryComponent.gd` | E5 | ✅ |
+| 12 | `src/systems/loot/LootSystem.gd` + `assets/data/loot_tables.json` | E5 | ✅ |
+| 13 | `src/systems/audio/AudioManager.gd` | E8 | ✅ |
+| 14 | `src/enemies/EnemyBase.gd` + `SensorComponent.gd` | E6 | ✅ |
+| 15 | `src/world/ExtractionZone.gd` + `LootContainer.gd` | E3 | ✅ |
+| 16 | `.gitignore` para Godot 4 | E1 | ✅ |
 
 ---
 
@@ -163,14 +173,16 @@
 ## 🏃 SPRINTS
 
 ### Sprint 1 — Fundación técnica (Semanas 1-2)
-**Objetivo:** Tener un prototipo FPS básico corriendo en Godot con player controller y escena de prueba.
+**Objetivo:** EventBus funcionando, player FPS moviéndose en un CSG greybox de Adrogue.
 
 **Criterios de aceptación:**
-- [x] Repositorio configurado con estructura de carpetas
-- [ ] Player puede moverse, saltar y apuntar en primera persona
-- [ ] Al menos un arma prototipo funcional (disparo + retroceso)
-- [ ] Escena greybox de prueba (50x50m)
-- [ ] README actualizado con instrucciones de setup
+- [x] Repositorio configurado con estructura `src/` y `docs/AGENTS.md`
+- [x] `project.godot` con autoloads, input map y renderer configurados
+- [x] `EventBus.gd` con todas las señales tipadas
+- [ ] Player puede moverse, saltar, agacharse y apuntar en primera persona
+- [ ] CSG blockout de Adrogue con 4 zonas y NavMesh bakeado
+- [ ] `ItemData.gd` + 7 recursos `.tres` de ítems base
+- [ ] `InventoryComponent.gd` funcional con sistema de peso
 
 ---
 
@@ -226,5 +238,7 @@
 - 🎮 Road To Vostok: https://roadtovostok.com/ (referencia principal)
 - 🎮 Escape From Tarkov (mecánicas de extracción y loot)
 - 📚 Godot 4 Docs: https://docs.godotengine.org/en/stable/
+- 🌳 Beehave (behavior trees para Godot 4): https://github.com/bitbrain/beehave
 - 🗺️ Google Maps — Adrogue zona (para referencia de layout)
-- 🎨 Godot FPS template: https://github.com/godotengine/tps-demo
+- 📐 Arquitectura del proyecto: [docs/architecture.md](docs/architecture.md)
+- 🤖 Contexto de agentes: [docs/AGENTS.md](docs/AGENTS.md)
