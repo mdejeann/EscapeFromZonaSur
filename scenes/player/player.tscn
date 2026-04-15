@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=12 format=3 uid="uid://player001"]
 
-[ext_resource type="Script" path="res://src/player/PlayerController.gd" id="1"]
-[ext_resource type="Script" path="res://src/player/CameraController.gd" id="2"]
-[ext_resource type="Script" path="res://src/player/HealthComponent.gd" id="3"]
-[ext_resource type="Script" path="res://src/systems/inventory/InventoryComponent.gd" id="4"]
+[ext_resource type="Script" path="res://src/player/PlayerController.gd" id="1_playerctrl"]
+[ext_resource type="Script" path="res://src/player/CameraController.gd" id="2_cameractrl"]
+[ext_resource type="Script" path="res://src/player/HealthComponent.gd" id="3_health"]
+[ext_resource type="Script" path="res://src/player/WeaponHandler.gd" id="4_weapon"]
+[ext_resource type="Script" path="res://src/systems/inventory/InventoryComponent.gd" id="5_inventory"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_stand"]
 radius = 0.4
@@ -13,29 +14,64 @@ height = 1.8
 radius = 0.4
 height = 1.0
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_player"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_player"]
+albedo_color = Color(0.2, 0.4, 0.8, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_raycastground"]
+size = Vector3(0.1, 0.1, 0.1)
+
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1")
+script = ExtResource("1_playerctrl")
+walk_speed = 5.0
+sprint_speed = 8.0
+crouch_speed = 2.5
+jump_velocity = 4.5
+mouse_sensitivity = 0.002
+
+[node name="CameraMount" type="Node3D" parent="."]
+position = Vector3(0.0, 1.6, 0.0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraMount"]
+script = ExtResource("2_cameractrl")
+bob_enabled = true
+bob_frequency = 2.0
+bob_amplitude = 0.05
+tilt_enabled = true
+tilt_max_angle = 3.0
+
+[node name="WeaponRayCast" type="RayCast3D" parent="CameraMount/Camera3D"]
+target_position = Vector3(0.0, 0.0, -50.0)
+enabled = true
 
 [node name="CollisionShapeStand" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_stand")
 
 [node name="CollisionShapeCrouch" type="CollisionShape3D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape3D_crouch")
 disabled = true
 
-[node name="CameraMount" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraMount"]
-script = ExtResource("2")
-
 [node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("3")
+script = ExtResource("3_health")
+max_health = 100
 is_player = true
 
+[node name="WeaponHandler" type="Node" parent="."]
+script = ExtResource("4_weapon")
+camera_mount = NodePath("../CameraMount")
+raycast = NodePath("../CameraMount/Camera3D/WeaponRayCast")
+
 [node name="InventoryComponent" type="Node" parent="."]
-script = ExtResource("4")
+script = ExtResource("5_inventory")
+max_weight = 20.0
 
 [node name="FootstepRayCast" type="RayCast3D" parent="."]
-target_position = Vector3(0, -1.2, 0)
+target_position = Vector3(0.0, -1.5, 0.0)
+enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_player")
+surface_material_override/0 = SubResource("StandardMaterial3D_player")
