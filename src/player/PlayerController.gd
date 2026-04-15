@@ -57,6 +57,11 @@ func _physics_process(delta: float) -> void:
 	_handle_footstep(delta)
 	move_and_slide()
 
+	# Update SimpleGrassTextured interactive position
+	var grass_singleton := get_node_or_null("/root/SimpleGrass")
+	if grass_singleton:
+		grass_singleton.set("player_position", global_position)
+
 
 func _handle_mouse_look(relative: Vector2) -> void:
 	rotate_y(-relative.x * mouse_sensitivity)

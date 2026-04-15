@@ -33,6 +33,17 @@ func _ready() -> void:
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
+	# Música/ambiente del menú principal
+	_start_menu_ambient()
+
+
+func _start_menu_ambient() -> void:
+	var ambient_path := "res://assets/audio/ambient/night_crickets.wav"
+	if ResourceLoader.exists(ambient_path):
+		var stream := load(ambient_path) as AudioStream
+		if stream:
+			AudioManager.play_ambient(stream, 2.0)
+
 
 func _connect_buttons() -> void:
 	new_game_button.pressed.connect(_on_new_game)

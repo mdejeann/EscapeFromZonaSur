@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://player001"]
+[gd_scene load_steps=14 format=3 uid="uid://player001"]
 
 [ext_resource type="Script" path="res://src/player/PlayerController.gd" id="1_playerctrl"]
 [ext_resource type="Script" path="res://src/player/CameraController.gd" id="2_cameractrl"]
 [ext_resource type="Script" path="res://src/player/HealthComponent.gd" id="3_health"]
 [ext_resource type="Script" path="res://src/player/WeaponHandler.gd" id="4_weapon"]
 [ext_resource type="Script" path="res://src/systems/inventory/InventoryComponent.gd" id="5_inventory"]
+[ext_resource type="Resource" path="res://assets/data/weapons/pistol_9mm.tres" id="6_pistol"]
+[ext_resource type="PackedScene" path="res://assets/models/weapons/pistol/service_pistol.glb" id="7_pistol_model"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_stand"]
 radius = 0.4
@@ -63,6 +65,10 @@ is_player = true
 script = ExtResource("4_weapon")
 camera_mount = NodePath("../CameraMount")
 raycast = NodePath("../CameraMount/Camera3D/WeaponRayCast")
+default_weapon = ExtResource("6_pistol")
+
+[node name="WeaponModel" parent="CameraMount/Camera3D" instance=ExtResource("7_pistol_model")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.3, -0.25, -0.5)
 
 [node name="InventoryComponent" type="Node" parent="."]
 script = ExtResource("5_inventory")

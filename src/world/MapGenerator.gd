@@ -55,10 +55,23 @@ func _create_materials() -> void:
 	_mat_ground.albedo_color = Color(0.35, 0.28, 0.20) # dry earth
 	_mat_ground.roughness = 0.95
 
-	# Streets - cobblestone / empedrado
+	# Streets - cobblestone / empedrado (Poly Haven stone_pathway_02 PBR)
 	_mat_street = StandardMaterial3D.new()
-	_mat_street.albedo_color = Color(0.32, 0.30, 0.28) # dark stone
+	var street_diff := load("res://assets/textures/streets/stone_pathway_02_diff_1k.jpg") as Texture2D
+	var street_normal := load("res://assets/textures/streets/stone_pathway_02_nor_gl_1k.jpg") as Texture2D
+	var street_rough := load("res://assets/textures/streets/stone_pathway_02_rough_1k.jpg") as Texture2D
+	if street_diff:
+		_mat_street.albedo_texture = street_diff
+		_mat_street.albedo_color = Color(0.85, 0.82, 0.78)
+	else:
+		_mat_street.albedo_color = Color(0.32, 0.30, 0.28)
+	if street_normal:
+		_mat_street.normal_enabled = true
+		_mat_street.normal_texture = street_normal
+	if street_rough:
+		_mat_street.roughness_texture = street_rough
 	_mat_street.roughness = 0.85
+	_mat_street.uv1_scale = Vector3(4.0, 4.0, 4.0) # tile the texture across large surfaces
 
 	# Sidewalk - vereda
 	_mat_sidewalk = StandardMaterial3D.new()
@@ -143,6 +156,7 @@ func _generate_map() -> void:
 	_generate_abandoned_vehicles()
 	_generate_environment()
 	_generate_navigation_region()
+	_generate_grass_patches()
 
 	print("[MapGenerator] Barrios de Adrogué generated (seed: %d)" % seed_value)
 
@@ -500,9 +514,13 @@ func _generate_extraction_zones() -> void:
 	add_child(parent)
 	parent.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else self
 
+	var _ExtractionZoneScript = preload("res://src/world/ExtractionZone.gd")
 	for ext_data in _BarriosMapData.EXTRACTION_POINTS:
 		var ext_zone := Area3D.new()
 		ext_zone.name = ext_data["name"].replace(" ", "_").replace("-", "_")
+		ext_zone.set_script(_ExtractionZoneScript)
+		ext_zone.set("zone_name", ext_data["name"])
+		ext_zone.set("extraction_time", ext_data.get("timer", 12.0))
 		ext_zone.position = ext_data["position"]
 		parent.add_child(ext_zone)
 		ext_zone.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else self
@@ -649,6 +667,10 @@ func _generate_navigation_region() -> void:
 	add_child(nav)
 	nav.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else self
 
+	# Bake the navmesh after the tree is ready (deferred to allow CSG to finalize)
+	if not Engine.is_editor_hint():
+		nav.bake_navigation_mesh.call_deferred()
+
 
 # ── Helpers ───────────────────────────────────────────────
 func _is_on_street(x: float, z: float) -> bool:
@@ -671,3 +693,87 @@ func _get_zone_material(zone_type: String) -> StandardMaterial3D:
 		"medical": return _mat_building_medical
 		"recreation": return _mat_building_recreation
 		_: return _mat_building_residential
+
+
+# ── Grass Patches (MultiMesh based) ───────────────────────
+
+func _generate_grass_patches() -> void:
+	var parent := Node3D.new()
+	parent.name = "GrassPatches"
+	add_child(parent)
+	parent.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else self
+
+	# Zones that get grass coverage
+	var grass_zones := {
+		"green_zone": {"density": 400, "scale_h": 1.2, "scale_w": 1.0, "color": Color(0.30, 0.50, 0.20)},
+		"residential_west": {"density": 120, "scale_h": 0.7, "scale_w": 0.8, "color": Color(0.25, 0.40, 0.18)},
+		"residential_east": {"density": 100, "scale_h": 0.6, "scale_w": 0.8, "color": Color(0.22, 0.38, 0.16)},
+		"club_deportivo": {"density": 200, "scale_h": 1.0, "scale_w": 1.0, "color": Color(0.28, 0.48, 0.20)},
+	}
+
+	for zone_name in grass_zones:
+		if not _BarriosMapData.ZONES.has(zone_name):
+			continue
+		var zone_rect: Array = _BarriosMapData.ZONES[zone_name]["rect"]
+		var cfg: Dictionary = grass_zones[zone_name]
+		_create_grass_patch(parent, zone_name, zone_rect, cfg)
+
+	print("[MapGenerator] Grass patches generated")
+
+
+func _create_grass_patch(parent: Node3D, zone_name: String, rect: Array, cfg: Dictionary) -> void:
+	var grass_node := MultiMeshInstance3D.new()
+	grass_node.name = "Grass_%s" % zone_name
+
+	# Position at center of zone, on ground level
+	var cx: float = (rect[0] + rect[2]) / 2.0
+	var cz: float = (rect[1] + rect[3]) / 2.0
+	grass_node.position = Vector3(cx, 0.15, cz)
+
+	parent.add_child(grass_node)
+	grass_node.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else self
+
+	# Create grass material
+	var grass_mat := StandardMaterial3D.new()
+	grass_mat.albedo_color = cfg["color"]
+	grass_mat.roughness = 0.95
+	grass_mat.cull_mode = BaseMaterial3D.CULL_DISABLED  # visible from both sides
+
+	# Create a simple quad mesh for grass blades
+	var quad := QuadMesh.new()
+	quad.size = Vector2(0.3, 0.6)
+	quad.material = grass_mat
+
+	# Generate grass instances spread across the zone
+	var density: int = cfg["density"]
+	var x_min: float = rect[0]
+	var z_min: float = rect[1]
+	var x_max: float = rect[2]
+	var z_max: float = rect[3]
+
+	var mm := MultiMesh.new()
+	mm.transform_format = MultiMesh.TRANSFORM_3D
+	mm.instance_count = density
+	mm.use_colors = true
+	mm.mesh = quad
+
+	for i in range(density):
+		var gx: float = _rng.randf_range(x_min, x_max) - cx
+		var gz: float = _rng.randf_range(z_min, z_max) - cz
+		var rot_y: float = _rng.randf_range(0.0, TAU)
+		var scale_var: float = _rng.randf_range(0.7, 1.3)
+
+		var t := Transform3D()
+		t = t.scaled(Vector3(cfg["scale_w"] * scale_var, cfg["scale_h"] * scale_var, cfg["scale_w"] * scale_var))
+		t = t.rotated(Vector3.UP, rot_y)
+		t.origin = Vector3(gx, 0.0, gz)
+		mm.set_instance_transform(i, t)
+
+		# Slight color variation per instance
+		var color_var: Color = cfg["color"]
+		color_var.r += _rng.randf_range(-0.03, 0.03)
+		color_var.g += _rng.randf_range(-0.05, 0.05)
+		color_var.b += _rng.randf_range(-0.02, 0.02)
+		mm.set_instance_color(i, color_var)
+
+	grass_node.multimesh = mm

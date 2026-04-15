@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/player/WeaponData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+weapon_id = "pistol_9mm"
+display_name = "Bersa Thunder 9mm"
+damage = 25
+fire_rate = 0.15
+auto_fire = false
+max_range = 50.0
+max_ammo = 15
+reserve_ammo = 45
+reload_time = 1.8
+recoil_vertical = 0.04
+recoil_horizontal = 0.01

@@ -42,14 +42,13 @@ func _spawn_player() -> void:
 
 
 func _setup_extraction_zones() -> void:
-	var ext_parent := get_node_or_null("ExtractionZones")
+	# ExtractionZones now use ExtractionZone.gd script which self-connects signals.
+	# We just verify they exist for debugging purposes.
+	var ext_parent := get_node_or_null("../MapRoot/ExtractionZones")
 	if not ext_parent:
+		push_warning("[BarriosLevel] ExtractionZones not found — MapGenerator may not have finished yet")
 		return
-
-	for child in ext_parent.get_children():
-		if child is Area3D:
-			child.body_entered.connect(_on_extraction_body_entered.bind(child))
-			child.body_exited.connect(_on_extraction_body_exited.bind(child))
+	print("[BarriosLevel] Found %d extraction zones" % ext_parent.get_child_count())
 
 
 func _spawn_enemies() -> void:
@@ -122,7 +121,7 @@ func _on_extraction_completed(zone_name: String) -> void:
 
 func _start_ambient_audio() -> void:
 	# Start with default suburban desolate ambient
-	var default_ambient := "res://assets/audio/ambient/suburban_desolate.ogg"
+	var default_ambient := "res://assets/audio/ambient/suburban_desolate.wav"
 	if ResourceLoader.exists(default_ambient):
 		var stream := load(default_ambient) as AudioStream
 		if stream:
