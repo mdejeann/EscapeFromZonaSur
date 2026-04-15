@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/world/MapGenerator.gd" id="1_gen"]
+[ext_resource type="Script" path="res://src/world/BarriosLevel.gd" id="2_lvl"]
+
+[node name="BarriosLevel" type="Node3D"]
+
+[node name="MapRoot" type="Node3D" parent="."]
+script = ExtResource("1_gen")
+seed_value = 42
+building_detail = 1
+show_zone_colors = true
+show_extraction_markers = true
+
+[node name="LevelLogic" type="Node3D" parent="."]
+script = ExtResource("2_lvl")
