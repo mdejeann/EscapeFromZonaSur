@@ -5,8 +5,7 @@
 .godot/
 *.uid
 
-# Godot export presets and builds
-export_presets.cfg
+# Godot export builds
 builds/
 exports/
 
