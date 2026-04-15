@@ -92,3 +92,27 @@ signal hud_message_requested(text: String, duration: float)
 
 ## Solicitar toggle del inventario (lo escucha la escena de UI).
 signal inventory_toggle_requested
+
+
+# ─── CRAFTING ────────────────────────────────────────────────────────────────
+
+## Emitida cuando el jugador craftea un ítem exitosamente.
+signal item_crafted(result: Resource, quantity: int)
+
+
+# ─── ECONOMY ─────────────────────────────────────────────────────────────────
+
+## Emitida cuando el jugador compra un ítem a un NPC.
+signal item_purchased(item_data: Resource, quantity: int, cost: int)
+
+## Emitida cuando el jugador vende un ítem a un NPC.
+signal item_sold(item_data: Resource, quantity: int, value: int)
+
+## Emitida cuando cambia la cantidad de pesos del jugador. HUD la escucha.
+signal currency_changed(new_amount: int)
+
+
+# ─── STASH ───────────────────────────────────────────────────────────────────
+
+## Emitida cuando el contenido del stash cambia (ítem agregado o retirado).
+signal stash_updated

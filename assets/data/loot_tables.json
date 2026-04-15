@@ -22,7 +22,7 @@
       "entries": [
         {"id": "pistol_9mm",    "weight": 15, "min": 1,    "max": 1},
         {"id": "ammo_9mm",      "weight": 35, "min": 10,   "max": 30},
-        {"id": "armor_vest",    "weight": 10, "min": 1,    "max": 1},
+        {"id": "armor_vest_basic", "weight": 10, "min": 1,    "max": 1},
         {"id": "bandage",       "weight": 40, "min": 2,    "max": 5}
       ]
     },
@@ -40,7 +40,7 @@
         {"id": "ammo_9mm",      "weight": 30, "min": 5,    "max": 20},
         {"id": "cash_pesos",    "weight": 25, "min": 50,   "max": 300},
         {"id": "bandage",       "weight": 30, "min": 1,    "max": 3},
-        {"id": "armor_vest",    "weight": 15, "min": 1,    "max": 1}
+        {"id": "armor_vest_basic", "weight": 15, "min": 1,    "max": 1}
       ]
     },
     "enemy_bonaerense": {

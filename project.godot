@@ -25,6 +25,9 @@ EventBus="*res://src/autoloads/EventBus.gd"
 GameState="*res://src/autoloads/GameState.gd"
 AudioManager="*res://src/systems/audio/AudioManager.gd"
 LootSystem="*res://src/systems/loot/LootSystem.gd"
+StashSystem="*res://src/systems/inventory/StashSystem.gd"
+CraftingSystem="*res://src/systems/crafting/CraftingSystem.gd"
+EconomySystem="*res://src/systems/economy/EconomySystem.gd"
 
 [display]
 
