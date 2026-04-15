@@ -2,7 +2,6 @@
 # Persiste el inventario del stash entre raids usando FileAccess.
 # El stash NO se pierde al morir — solo los ítems equipados en el raid se pierden.
 # Agente responsable: @gameplay
-class_name StashSystem
 extends Node
 
 
@@ -24,7 +23,7 @@ func _ready() -> void:
 
 ## Agrega un ítem al stash. Retorna true si hubo espacio.
 func add_item(item_id: String, qty: int = 1) -> bool:
-	var item_data := _load_item_resource(item_id)
+	var item_data: Resource = _load_item_resource(item_id)
 	if item_data == null:
 		push_warning("StashSystem: ítem '%s' no encontrado." % item_id)
 		return false
@@ -76,7 +75,7 @@ func get_item_quantity(item_id: String) -> int:
 func get_current_weight() -> float:
 	var total := 0.0
 	for entry in items:
-		var item_data := _load_item_resource(entry["item_id"])
+		var item_data: Resource = _load_item_resource(entry["item_id"])
 		if item_data:
 			total += item_data.weight * entry["quantity"]
 	return total
@@ -129,10 +128,11 @@ func load_stash() -> void:
 
 # ── Privado ──────────────────────────────────────────────────────────────────
 
-func _load_item_resource(item_id: String) -> ItemData:
+func _load_item_resource(item_id: String) -> Resource:
 	var path := "res://assets/data/items/" + item_id + ".tres"
 	if ResourceLoader.exists(path):
-		return ResourceLoader.load(path) as ItemData
+		var res: Resource = ResourceLoader.load(path)
+		return res
 	return null
 
 
@@ -140,5 +140,5 @@ func _on_player_extracted(_map_id: String, loot_kept: Array) -> void:
 	# Al extraerse, transferir loot del raid al stash
 	for entry in loot_kept:
 		if entry is Dictionary and entry.has("item") and entry.has("quantity"):
-			var item_data: ItemData = entry["item"]
+			var item_data: Resource = entry["item"]
 			add_item(item_data.id, entry["quantity"])

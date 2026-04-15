@@ -225,27 +225,27 @@ const POIS := [
 # ── Ambient Zone Audio ────────────────────────────────────
 const AUDIO_ZONES := {
 	"green_zone": {
-		"ambient": "res://assets/audio/ambient/birds_suburban.ogg",
+		"ambient": "res://assets/audio/ambient/birds_suburban.wav",
 		"music": "",
 		"reverb": "outdoor_open",
 	},
 	"residential_west": {
-		"ambient": "res://assets/audio/ambient/suburban_desolate.ogg",
+		"ambient": "res://assets/audio/ambient/suburban_desolate.wav",
 		"music": "",
 		"reverb": "outdoor_street",
 	},
 	"commercial_center": {
-		"ambient": "res://assets/audio/ambient/urban_abandoned.ogg",
+		"ambient": "res://assets/audio/ambient/urban_abandoned.wav",
 		"music": "",
 		"reverb": "outdoor_enclosed",
 	},
 	"train_station": {
-		"ambient": "res://assets/audio/ambient/train_wind.ogg",
+		"ambient": "res://assets/audio/ambient/train_wind.wav",
 		"music": "",
 		"reverb": "large_hall",
 	},
 	"hospital_area": {
-		"ambient": "res://assets/audio/ambient/hospital_eerie.ogg",
+		"ambient": "res://assets/audio/ambient/hospital_eerie.wav",
 		"music": "",
 		"reverb": "indoor_large",
 	},

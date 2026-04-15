@@ -29,6 +29,10 @@ StashSystem="*res://src/systems/inventory/StashSystem.gd"
 CraftingSystem="*res://src/systems/crafting/CraftingSystem.gd"
 EconomySystem="*res://src/systems/economy/EconomySystem.gd"
 
+[audio]
+
+buses/default_bus_layout="res://assets/audio/default_bus_layout.tres"
+
 [display]
 
 window/size/viewport_width=1920

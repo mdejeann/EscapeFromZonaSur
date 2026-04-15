@@ -3,6 +3,8 @@
 ## and extraction zone activation.
 extends Node3D
 
+const _BarriosMapData = preload("res://src/world/map_data/BarriosMapData.gd")
+
 @export var player_scene: PackedScene
 @export var enemy_scene: PackedScene
 
@@ -30,7 +32,7 @@ func _spawn_player() -> void:
 		push_warning("[BarriosLevel] No player_scene assigned")
 		return
 
-	var spawn_points := BarriosMapData.SPAWN_POINTS
+	var spawn_points: Array = _BarriosMapData.SPAWN_POINTS
 	var spawn_idx := randi() % spawn_points.size()
 	_player = player_scene.instantiate()
 	_player.global_position = spawn_points[spawn_idx]
@@ -54,7 +56,7 @@ func _spawn_enemies() -> void:
 	if not enemy_scene:
 		return
 
-	for spawn_data in BarriosMapData.ENEMY_SPAWNS:
+	for spawn_data in _BarriosMapData.ENEMY_SPAWNS:
 		var count := randi_range(spawn_data["count_range"][0], spawn_data["count_range"][1])
 		var patrol_pts: Array = spawn_data["patrol_points"]
 
@@ -72,8 +74,8 @@ func _spawn_enemies() -> void:
 
 func _update_current_zone(pos: Vector3) -> void:
 	var new_zone := ""
-	for zone_name in BarriosMapData.ZONES:
-		var rect: Array = BarriosMapData.ZONES[zone_name]["rect"]
+	for zone_name in _BarriosMapData.ZONES:
+		var rect: Array = _BarriosMapData.ZONES[zone_name]["rect"]
 		if pos.x >= rect[0] and pos.x <= rect[2] and pos.z >= rect[1] and pos.z <= rect[3]:
 			new_zone = zone_name
 			break
@@ -87,7 +89,7 @@ func _on_zone_changed(zone_name: String) -> void:
 	if zone_name.is_empty():
 		return
 
-	var audio_data: Dictionary = BarriosMapData.AUDIO_ZONES.get(zone_name, {})
+	var audio_data: Dictionary = _BarriosMapData.AUDIO_ZONES.get(zone_name, {})
 	if audio_data.is_empty():
 		return
 

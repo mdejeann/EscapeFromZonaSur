@@ -21,8 +21,8 @@ func _ready() -> void:
 
 ## Intenta craftear la receta indicada usando el inventario dado.
 ## Retorna true si el crafteo fue exitoso.
-func craft(recipe_id: String, inventory: InventoryComponent) -> bool:
-	var recipe := _get_recipe(recipe_id)
+func craft(recipe_id: String, inventory: Node) -> bool:
+	var recipe: Dictionary = _get_recipe(recipe_id)
 	if recipe.is_empty():
 		push_warning("CraftingSystem: receta '%s' no encontrada." % recipe_id)
 		return false
@@ -36,7 +36,7 @@ func craft(recipe_id: String, inventory: InventoryComponent) -> bool:
 		inventory.remove_item(ingredient["id"], ingredient["quantity"])
 
 	# Entregar resultado
-	var result := _get_item(recipe["result_id"])
+	var result: Resource = _get_item(recipe["result_id"])
 	if not result:
 		push_warning("CraftingSystem: ítem resultado '%s' no encontrado." % recipe["result_id"])
 		return false
@@ -45,7 +45,7 @@ func craft(recipe_id: String, inventory: InventoryComponent) -> bool:
 	if not inventory.add_item(result, qty):
 		# Inventario lleno — intentar devolver ingredientes
 		for ingredient in recipe["ingredients"]:
-			var ing_item := _get_item(ingredient["id"])
+			var ing_item: Resource = _get_item(ingredient["id"])
 			if ing_item:
 				if not inventory.add_item(ing_item, ingredient["quantity"]):
 					push_warning("CraftingSystem: no se pudo devolver '%s' x%d — inventario lleno." % [ingredient["id"], ingredient["quantity"]])
@@ -56,8 +56,8 @@ func craft(recipe_id: String, inventory: InventoryComponent) -> bool:
 
 
 ## Retorna true si el jugador tiene todos los materiales para la receta.
-func can_craft(recipe_id: String, inventory: InventoryComponent) -> bool:
-	var recipe := _get_recipe(recipe_id)
+func can_craft(recipe_id: String, inventory: Node) -> bool:
+	var recipe: Dictionary = _get_recipe(recipe_id)
 	if recipe.is_empty():
 		return false
 	for ingredient in recipe["ingredients"]:
@@ -72,7 +72,7 @@ func get_all_recipes() -> Array[Dictionary]:
 
 
 ## Retorna las recetas que el jugador puede craftear con su inventario actual.
-func get_available_recipes(inventory: InventoryComponent) -> Array[Dictionary]:
+func get_available_recipes(inventory: Node) -> Array[Dictionary]:
 	var available: Array[Dictionary] = []
 	for recipe in _recipes:
 		if can_craft(recipe["id"], inventory):
@@ -103,12 +103,12 @@ func _get_recipe(recipe_id: String) -> Dictionary:
 	return {}
 
 
-func _get_item(item_id: String) -> ItemData:
+func _get_item(item_id: String) -> Resource:
 	if _item_cache.has(item_id):
 		return _item_cache[item_id]
 	var path := items_base_path + item_id + ".tres"
 	if ResourceLoader.exists(path):
-		var item := ResourceLoader.load(path) as ItemData
+		var item: Resource = ResourceLoader.load(path)
 		_item_cache[item_id] = item
 		return item
 	push_warning("CraftingSystem: ítem '%s' no encontrado en '%s'" % [item_id, path])

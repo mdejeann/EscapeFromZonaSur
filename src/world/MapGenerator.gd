@@ -5,6 +5,8 @@
 ## train tracks, extraction zones, and environment.
 extends Node3D
 
+const _BarriosMapData = preload("res://src/world/map_data/BarriosMapData.gd")
+
 @export var regenerate: bool = false:
 	set(value):
 		if value and Engine.is_editor_hint():
@@ -21,7 +23,6 @@ extends Node3D
 @export var show_extraction_markers: bool = true
 
 var _rng := RandomNumberGenerator.new()
-var _map_data := BarriosMapData.new()
 
 # ── Material cache ────────────────────────────────────────
 var _mat_ground: StandardMaterial3D
@@ -43,8 +44,9 @@ var _mat_abandoned_vehicle: StandardMaterial3D
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		# Runtime: don't regenerate, map is already placed
-		return
+		# Runtime: generate the map procedurally
+		_clear_generated()
+		_generate_map()
 
 
 func _create_materials() -> void:
@@ -154,7 +156,7 @@ func _clear_generated() -> void:
 func _generate_ground() -> void:
 	var ground := CSGBox3D.new()
 	ground.name = "Ground"
-	ground.size = Vector3(BarriosMapData.MAP_SIZE.x + 40.0, 0.5, BarriosMapData.MAP_SIZE.y + 40.0)
+	ground.size = Vector3(_BarriosMapData.MAP_SIZE.x + 40.0, 0.5, _BarriosMapData.MAP_SIZE.y + 40.0)
 	ground.position = Vector3(0.0, -0.25, 0.0)
 	ground.material = _mat_ground
 	ground.use_collision = true
@@ -171,7 +173,7 @@ func _generate_streets() -> void:
 	streets_parent.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else self
 
 	# East-West streets
-	for street_data in BarriosMapData.STREETS_EW:
+	for street_data in _BarriosMapData.STREETS_EW:
 		var length: float = street_data["x_end"] - street_data["x_start"]
 		var center_x: float = (street_data["x_start"] + street_data["x_end"]) / 2.0
 		var w: float = street_data["width"]
@@ -200,7 +202,7 @@ func _generate_streets() -> void:
 			sidewalk.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else self
 
 	# North-South streets
-	for street_data in BarriosMapData.STREETS_NS:
+	for street_data in _BarriosMapData.STREETS_NS:
 		var length: float = street_data["z_end"] - street_data["z_start"]
 		var center_z: float = (street_data["z_start"] + street_data["z_end"]) / 2.0
 		var w: float = street_data["width"]
@@ -229,8 +231,8 @@ func _generate_streets() -> void:
 
 # ── Zone Building Generation ──────────────────────────────
 func _generate_zones() -> void:
-	for zone_name in BarriosMapData.ZONES:
-		var zone: Dictionary = BarriosMapData.ZONES[zone_name]
+	for zone_name in _BarriosMapData.ZONES:
+		var zone: Dictionary = _BarriosMapData.ZONES[zone_name]
 		if zone["type"] == "plains":
 			continue # handled by _generate_green_zone
 
@@ -265,13 +267,13 @@ func _generate_buildings_in_zone(parent: Node3D, rect: Array, zone: Dictionary, 
 		while z < z_max - 10.0:
 			# Skip if this position is on a street
 			if _is_on_street(x + block_size / 2.0, z + block_size / 2.0):
-				z += block_size + BarriosMapData.STREET_WIDTH
+				z += block_size + _BarriosMapData.STREET_WIDTH
 				continue
 
 			_generate_block(parent, x, z, block_size, height_range, coverage, mat, block_id)
 			block_id += 1
-			z += block_size + BarriosMapData.STREET_WIDTH
-		x += block_size + BarriosMapData.STREET_WIDTH
+			z += block_size + _BarriosMapData.STREET_WIDTH
+		x += block_size + _BarriosMapData.STREET_WIDTH
 
 
 func _generate_block(parent: Node3D, bx: float, bz: float, block_size: float,
@@ -324,7 +326,7 @@ func _generate_block(parent: Node3D, bx: float, bz: float, block_size: float,
 
 # ── Green Zone (Llanura) ──────────────────────────────────
 func _generate_green_zone() -> void:
-	var zone: Dictionary = BarriosMapData.ZONES["green_zone"]
+	var zone: Dictionary = _BarriosMapData.ZONES["green_zone"]
 	var rect: Array = zone["rect"]
 	var parent := Node3D.new()
 	parent.name = "GreenZone"
@@ -395,7 +397,7 @@ func _generate_train_tracks() -> void:
 	add_child(parent)
 	parent.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else self
 
-	var tracks := BarriosMapData.TRACKS
+	var tracks: Dictionary = _BarriosMapData.TRACKS
 	var tx: float = tracks["position_x"]
 	var tz_start: float = tracks["z_start"]
 	var tz_end: float = tracks["z_end"]
@@ -418,7 +420,7 @@ func _generate_train_tracks() -> void:
 
 	# Rails (2 tracks x 2 rails = 4 rails)
 	for track_idx in range(tracks["rail_count"]):
-		var track_offset := (track_idx - 0.5) * tracks["rail_spacing"]
+		var track_offset: float = (track_idx - 0.5) * tracks["rail_spacing"]
 		for rail_side in [-0.75, 0.75]: # rail gauge ~1.5m
 			var rail := CSGBox3D.new()
 			rail.name = "Rail_%d_%s" % [track_idx, "L" if rail_side < 0 else "R"]
@@ -451,7 +453,7 @@ func _generate_train_tracks() -> void:
 	# Platforms (andenes)
 	for plat_data in tracks["platform_positions"]:
 		var plat := CSGBox3D.new()
-		var side_offset := -tracks["width"] / 2.0 - 3.0 if plat_data["side"] == "west" else tracks["width"] / 2.0 + 3.0
+		var side_offset: float = -tracks["width"] / 2.0 - 3.0 if plat_data["side"] == "west" else tracks["width"] / 2.0 + 3.0
 		plat.name = "Platform_%s" % plat_data["side"]
 		plat.size = Vector3(5.0, 1.0, plat_data["length"])
 		plat.position = Vector3(tx + side_offset, 0.5, plat_data["z"])
@@ -498,7 +500,7 @@ func _generate_extraction_zones() -> void:
 	add_child(parent)
 	parent.owner = get_tree().edited_scene_root if Engine.is_editor_hint() else self
 
-	for ext_data in BarriosMapData.EXTRACTION_POINTS:
+	for ext_data in _BarriosMapData.EXTRACTION_POINTS:
 		var ext_zone := Area3D.new()
 		ext_zone.name = ext_data["name"].replace(" ", "_").replace("-", "_")
 		ext_zone.position = ext_data["position"]
@@ -589,7 +591,7 @@ func _generate_environment() -> void:
 	env.ambient_light_energy = 0.4
 
 	# Tonemap - gritty
-	env.tonemap_mode = Environment.TONE_MAP_ACES
+	env.tonemap_mode = Environment.TONE_MAPPER_ACES
 	env.tonemap_exposure = 0.9
 
 	# Fog - atmospheric haze
@@ -650,11 +652,11 @@ func _generate_navigation_region() -> void:
 
 # ── Helpers ───────────────────────────────────────────────
 func _is_on_street(x: float, z: float) -> bool:
-	for street in BarriosMapData.STREETS_EW:
+	for street in _BarriosMapData.STREETS_EW:
 		if abs(z - street["z"]) < street["width"] / 2.0 + 2.0:
 			if x > street["x_start"] and x < street["x_end"]:
 				return true
-	for street in BarriosMapData.STREETS_NS:
+	for street in _BarriosMapData.STREETS_NS:
 		if abs(x - street["x"]) < street["width"] / 2.0 + 2.0:
 			if z > street["z_start"] and z < street["z_end"]:
 				return true

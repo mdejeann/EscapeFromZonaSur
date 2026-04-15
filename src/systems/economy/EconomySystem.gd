@@ -25,18 +25,18 @@ func _ready() -> void:
 # ── API pública ───────────────────────────────────────────────────────────────
 
 ## Retorna el precio de venta (jugador → NPC) de un ítem.
-func get_sell_price(item_data: ItemData, quantity: int = 1) -> int:
+func get_sell_price(item_data: Resource, quantity: int = 1) -> int:
 	return int(item_data.base_value * sell_price_multiplier) * quantity
 
 
 ## Retorna el precio de compra (NPC → jugador) de un ítem.
-func get_buy_price(item_data: ItemData, quantity: int = 1) -> int:
+func get_buy_price(item_data: Resource, quantity: int = 1) -> int:
 	return int(item_data.base_value * buy_price_multiplier) * quantity
 
 
 ## El jugador vende un ítem de su inventario al NPC.
 ## Retorna true si la transacción fue exitosa.
-func sell_item(item_data: ItemData, quantity: int, inventory: InventoryComponent) -> bool:
+func sell_item(item_data: Resource, quantity: int, inventory: Node) -> bool:
 	if not inventory.has_item(item_data.id, quantity):
 		EventBus.hud_message_requested.emit("No tenés ese ítem en el inventario", 1.5)
 		return false
@@ -50,7 +50,7 @@ func sell_item(item_data: ItemData, quantity: int, inventory: InventoryComponent
 
 ## El jugador compra un ítem al NPC agregándolo al inventario.
 ## Retorna true si la transacción fue exitosa.
-func buy_item(item_data: ItemData, quantity: int, inventory: InventoryComponent) -> bool:
+func buy_item(item_data: Resource, quantity: int, inventory: Node) -> bool:
 	var cost := get_buy_price(item_data, quantity)
 	if currency < cost:
 		EventBus.hud_message_requested.emit("No tenés plata suficiente", 1.5)
