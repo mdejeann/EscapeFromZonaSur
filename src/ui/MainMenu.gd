@@ -48,13 +48,13 @@ func _connect_buttons() -> void:
 
 
 func _on_new_game() -> void:
-	GameState.start_raid("adrogue")
-	get_tree().change_scene_to_file("res://scenes/world/adrogue/adrogue.tscn")
+	GameState.start_raid("barrios_adrogue")
+	get_tree().change_scene_to_file("res://scenes/levels/barrios.tscn")
 
 
 func _on_continue() -> void:
-	GameState.start_raid("adrogue")
-	get_tree().change_scene_to_file("res://scenes/world/adrogue/adrogue.tscn")
+	GameState.start_raid("barrios_adrogue")
+	get_tree().change_scene_to_file("res://scenes/levels/barrios.tscn")
 
 
 func _on_options() -> void:
