@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/systems/inventory/ItemData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ammo_9mm"
+display_name = "Munición 9mm"
+description = "Caja de munición calibre 9mm. Compatible con la Bersa Thunder."
+item_type = 1
+weight = 0.3
+max_stack = 60
+base_value = 300
+has_durability = false
+max_durability = 100.0
