@@ -128,3 +128,14 @@ pause={
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.0706, 0.0706, 0.0706, 1)
+
+[shader_globals]
+
+sgt_legacy_renderer={
+"type": "int",
+"value": 0
+}
+sgt_player_mov={
+"type": "vec3",
+"value": "Vector3(0, 0, 0)"
+}
