@@ -56,22 +56,26 @@ func _create_materials() -> void:
 	_mat_ground.roughness = 0.95
 
 	# Streets - cobblestone / empedrado (Poly Haven stone_pathway_02 PBR)
-	_mat_street = StandardMaterial3D.new()
-	var street_diff := load("res://assets/textures/streets/stone_pathway_02_diff_1k.jpg") as Texture2D
-	var street_normal := load("res://assets/textures/streets/stone_pathway_02_nor_gl_1k.jpg") as Texture2D
-	var street_rough := load("res://assets/textures/streets/stone_pathway_02_rough_1k.jpg") as Texture2D
-	if street_diff:
-		_mat_street.albedo_texture = street_diff
-		_mat_street.albedo_color = Color(0.85, 0.82, 0.78)
+	var street_mat_res := load("res://assets/materials/stone_pathway_street.tres")
+	if street_mat_res:
+		_mat_street = street_mat_res
 	else:
-		_mat_street.albedo_color = Color(0.32, 0.30, 0.28)
-	if street_normal:
-		_mat_street.normal_enabled = true
-		_mat_street.normal_texture = street_normal
-	if street_rough:
-		_mat_street.roughness_texture = street_rough
-	_mat_street.roughness = 0.85
-	_mat_street.uv1_scale = Vector3(4.0, 4.0, 4.0) # tile the texture across large surfaces
+		_mat_street = StandardMaterial3D.new()
+		var street_diff := load("res://assets/textures/streets/stone_pathway_02_diff_1k.jpg") as Texture2D
+		var street_normal := load("res://assets/textures/streets/stone_pathway_02_nor_gl_1k.jpg") as Texture2D
+		var street_rough := load("res://assets/textures/streets/stone_pathway_02_rough_1k.jpg") as Texture2D
+		if street_diff:
+			_mat_street.albedo_texture = street_diff
+			_mat_street.albedo_color = Color(0.85, 0.82, 0.78)
+		else:
+			_mat_street.albedo_color = Color(0.32, 0.30, 0.28)
+		if street_normal:
+			_mat_street.normal_enabled = true
+			_mat_street.normal_texture = street_normal
+		if street_rough:
+			_mat_street.roughness_texture = street_rough
+		_mat_street.roughness = 0.85
+		_mat_street.uv1_scale = Vector3(0.5, 0.5, 0.5)
 
 	# Sidewalk - vereda
 	_mat_sidewalk = StandardMaterial3D.new()

@@ -101,7 +101,7 @@ var _footstep_streams: Dictionary = {}
 
 func _load_footstep_sounds() -> void:
 	var base_path := "res://assets/audio/sfx/footsteps/"
-	var surfaces := ["Asphalt", "Concrete", "Dirt", "Generic", "Grass", "Rock"]
+	var surfaces := ["Asphalt", "Dirt", "Generic", "Grass"]
 	for surface in surfaces:
 		var streams: Array[AudioStream] = []
 		for i in range(1, 9):
@@ -109,6 +109,13 @@ func _load_footstep_sounds() -> void:
 			if ResourceLoader.exists(path):
 				streams.append(load(path))
 		_footstep_streams[surface.to_lower()] = streams
+	# Alias surfaces that don't have dedicated files
+	_footstep_streams["concrete"] = _footstep_streams.get("asphalt", [])
+	_footstep_streams["rock"] = _footstep_streams.get("dirt", [])
+	_footstep_streams["metal"] = _footstep_streams.get("generic", [])
+	_footstep_streams["cobblestone"] = _footstep_streams.get("asphalt", [])
+	_footstep_streams["gravel"] = _footstep_streams.get("dirt", [])
+	_footstep_streams["wood"] = _footstep_streams.get("generic", [])
 
 
 # ── Privado ──────────────────────────────────────────────────────────────────

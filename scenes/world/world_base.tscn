@@ -1,6 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://worldbase001"]
+[gd_scene load_steps=14 format=3 uid="uid://worldbase001"]
 
 [ext_resource type="Script" path="res://src/world/ExtractionZone.gd" id="1_extractionzone"]
+[ext_resource type="PackedScene" path="res://assets/models/maps/bsas_m1_barrios.glb" id="2_barrios_map"]
+[ext_resource type="Material" path="res://assets/materials/stone_pathway_street.tres" id="3_street_mat"]
+[ext_resource type="Script" path="res://src/systems/audio/AmbientAudioSystem.gd" id="4_ambient_audio"]
 
 [sub_resource type="Environment" id="Environment_world"]
 background_mode = 2
@@ -22,24 +25,20 @@ sky_material = SubResource("ProceduralSkyMaterial_world")
 [sub_resource type="BoxMesh" id="BoxMesh_ground"]
 size = Vector3(200.0, 0.2, 200.0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
-albedo_color = Color(0.35, 0.35, 0.35, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
 size = Vector3(200.0, 0.2, 200.0)
 
-[sub_resource type="BoxMesh" id="BoxMesh_wall"]
-size = Vector3(1.0, 3.0, 20.0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wall"]
-albedo_color = Color(0.5, 0.5, 0.5, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wall"]
-size = Vector3(1.0, 3.0, 20.0)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_map"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_extraction"]
 radius = 3.0
 height = 3.0
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_world"]
+vertices = PackedVector3Array()
+polygons = []
+agent_radius = 0.5
+agent_height = 1.8
 
 [node name="WorldBase" type="Node3D"]
 
@@ -55,39 +54,23 @@ directional_shadow_mode = 2
 
 [node name="Ground" type="StaticBody3D" parent="."]
 collision_layer = 1
+metadata/surface_type = "cobblestone"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_ground")
-surface_material_override/0 = SubResource("StandardMaterial3D_ground")
+surface_material_override/0 = ExtResource("3_street_mat")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_ground")
 
+[node name="MapGeometry" parent="." instance=ExtResource("2_barrios_map")]
+
+[node name="MapCollision" type="StaticBody3D" parent="."]
+collision_layer = 1
+metadata/surface_type = "concrete"
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-
-[node name="Blockout" type="Node3D" parent="."]
-
-[node name="WallNorth" type="StaticBody3D" parent="Blockout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -10)
-collision_layer = 1
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Blockout/WallNorth"]
-mesh = SubResource("BoxMesh_wall")
-surface_material_override/0 = SubResource("StandardMaterial3D_wall")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Blockout/WallNorth"]
-shape = SubResource("BoxShape3D_wall")
-
-[node name="WallSouth" type="StaticBody3D" parent="Blockout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 10)
-collision_layer = 1
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Blockout/WallSouth"]
-mesh = SubResource("BoxMesh_wall")
-surface_material_override/0 = SubResource("StandardMaterial3D_wall")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Blockout/WallSouth"]
-shape = SubResource("BoxShape3D_wall")
+navigation_mesh = SubResource("NavigationMesh_world")
 
 [node name="ExtractionPoints" type="Node3D" parent="."]
 
@@ -105,3 +88,6 @@ shape = SubResource("CylinderShape3D_extraction")
 [node name="LootZones" type="Node3D" parent="."]
 
 [node name="EnemySpawner" type="Node3D" parent="."]
+
+[node name="AmbientAudioSystem" type="Node" parent="."]
+script = ExtResource("4_ambient_audio")

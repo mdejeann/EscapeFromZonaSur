@@ -95,7 +95,7 @@ var _stand_impulse: float = 0.0
 var _stand_impulse_timer: float = 0.0
 
 # Surface detection
-var _current_surface: String = "concrete"
+var _current_surface: String = "asphalt"
 var _scan_timer: float = 0.0
 const SCAN_CYCLE: float = 0.2
 
@@ -384,10 +384,13 @@ func _surface_detection(delta: float) -> void:
 
 	if footstep_raycast and footstep_raycast.is_colliding():
 		var collider := footstep_raycast.get_collider()
-		if collider is StaticBody3D and collider.has_meta("surface_type"):
+		if collider and collider.has_meta("surface_type"):
 			_current_surface = collider.get_meta("surface_type")
+		elif collider and collider.get_parent() and collider.get_parent().has_meta("surface_type"):
+			# CSGBox3D collision bodies are children of the CSG node
+			_current_surface = collider.get_parent().get_meta("surface_type")
 		else:
-			_current_surface = "concrete"
+			_current_surface = "asphalt"
 
 
 # ── Utility ─────────────────────────────────────────────────────────────────
