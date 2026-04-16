@@ -1,19 +1,17 @@
 # WeaponHandler.gd
-# Gestión de armas: equipar, disparar, recargar y retroceso.
-# Se comunica exclusivamente via EventBus — no referencia otros sistemas directamente.
+# Gestión de armas: equipar, disparar, recargar y retroceso visual con kick.
 # Agente responsable: @core
 class_name WeaponHandler
 extends Node
 
 
 @export_group("References")
-## Nodo CameraMount del jugador. Asignar en la escena player.tscn.
 @export var camera_mount: Node3D
-## RayCast3D posicionado en la cámara apuntando hacia adelante. Asignar en escena.
 @export var raycast: RayCast3D
+## Nodo 3D del modelo del arma para aplicar kick visual
+@export var weapon_model: Node3D
 
 @export_group("Default Weapon")
-## Datos del arma equipada por defecto al iniciar.
 @export var default_weapon: WeaponData
 
 var _weapon: WeaponData
@@ -21,6 +19,10 @@ var _current_ammo: int = 0
 var _reserve_ammo: int = 0
 var _is_reloading: bool = false
 var _fire_cooldown: float = 0.0
+
+# Visual kick state
+var _current_kick: Vector3 = Vector3.ZERO
+var _current_kick_rotation: Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
@@ -33,6 +35,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if _fire_cooldown > 0.0:
 		_fire_cooldown -= delta
+
+	# Visual kick recovery
+	_update_visual_kick(delta)
 
 	if _weapon == null:
 		return
@@ -144,6 +149,23 @@ func _apply_recoil() -> void:
 	camera_mount.rotation.x -= _weapon.recoil_vertical
 	camera_mount.rotation.x = clamp(camera_mount.rotation.x, -PI / 2.0, PI / 2.0)
 	camera_mount.rotation.y += randf_range(-_weapon.recoil_horizontal, _weapon.recoil_horizontal)
+
+	# Visual weapon kick
+	_current_kick = Vector3(0.0, 0.0, _weapon.kick)
+	_current_kick_rotation = Vector3(
+		-_weapon.rotation_power,
+		randf_range(-_weapon.rotation_power * 0.5, _weapon.rotation_power * 0.5),
+		0.0
+	)
+
+
+func _update_visual_kick(delta: float) -> void:
+	if weapon_model == null:
+		return
+	_current_kick = _current_kick.lerp(Vector3.ZERO, delta * (_weapon.kick_recovery if _weapon else 10.0))
+	_current_kick_rotation = _current_kick_rotation.lerp(Vector3.ZERO, delta * (_weapon.rotation_recovery if _weapon else 8.0))
+	weapon_model.position = _current_kick
+	weapon_model.rotation = _current_kick_rotation
 
 
 func _get_fire_origin() -> Vector3:

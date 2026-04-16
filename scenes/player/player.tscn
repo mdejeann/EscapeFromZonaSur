@@ -28,26 +28,28 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_playerctrl")
-walk_speed = 5.0
-sprint_speed = 8.0
-crouch_speed = 2.5
-jump_velocity = 4.5
+walk_speed = 2.5
+sprint_speed = 5.0
+crouch_speed = 1.0
+jump_velocity = 7.0
 mouse_sensitivity = 0.002
 
 [node name="CameraMount" type="Node3D" parent="."]
 position = Vector3(0.0, 1.6, 0.0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraMount"]
-script = ExtResource("2_cameractrl")
-bob_enabled = true
-bob_frequency = 2.0
-bob_amplitude = 0.05
-tilt_enabled = true
-tilt_max_angle = 3.0
+[node name="HeadBob" type="Node3D" parent="CameraMount"]
 
-[node name="WeaponRayCast" type="RayCast3D" parent="CameraMount/Camera3D"]
+[node name="Impulse" type="Node3D" parent="CameraMount/HeadBob"]
+
+[node name="Camera3D" type="Camera3D" parent="CameraMount/HeadBob/Impulse"]
+script = ExtResource("2_cameractrl")
+
+[node name="WeaponRayCast" type="RayCast3D" parent="CameraMount/HeadBob/Impulse/Camera3D"]
 target_position = Vector3(0.0, 0.0, -50.0)
 enabled = true
+
+[node name="WeaponModel" parent="CameraMount/HeadBob/Impulse/Camera3D" instance=ExtResource("7_pistol_model")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.3, -0.25, -0.5)
 
 [node name="CollisionShapeStand" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_stand")
@@ -55,6 +57,10 @@ shape = SubResource("CapsuleShape3D_stand")
 [node name="CollisionShapeCrouch" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_crouch")
 disabled = true
+
+[node name="AboveRayCast" type="RayCast3D" parent="."]
+target_position = Vector3(0.0, 1.0, 0.0)
+enabled = true
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_health")
@@ -64,11 +70,9 @@ is_player = true
 [node name="WeaponHandler" type="Node" parent="."]
 script = ExtResource("4_weapon")
 camera_mount = NodePath("../CameraMount")
-raycast = NodePath("../CameraMount/Camera3D/WeaponRayCast")
+raycast = NodePath("../CameraMount/HeadBob/Impulse/Camera3D/WeaponRayCast")
+weapon_model = NodePath("../CameraMount/HeadBob/Impulse/Camera3D/WeaponModel")
 default_weapon = ExtResource("6_pistol")
-
-[node name="WeaponModel" parent="CameraMount/Camera3D" instance=ExtResource("7_pistol_model")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.3, -0.25, -0.5)
 
 [node name="InventoryComponent" type="Node" parent="."]
 script = ExtResource("5_inventory")

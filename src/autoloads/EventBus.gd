@@ -20,6 +20,12 @@ signal player_extracted(map_id: String, loot_kept: Array)
 ## Emitida en cada paso del jugador. AudioManager escucha esto para SFX de pasos.
 signal player_footstep(surface_type: String)
 
+## Emitida cuando el jugador recibe daño de caída.
+signal player_took_fall_damage(fall_distance: float)
+
+## Emitida cuando cambia el estado de movimiento del jugador.
+signal player_movement_state_changed(is_sprinting: bool, is_crouching: bool)
+
 
 # ─── WEAPONS ─────────────────────────────────────────────────────────────────
 

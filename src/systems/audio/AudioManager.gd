@@ -28,6 +28,7 @@ func _ready() -> void:
 	# Conectar señales del EventBus
 	EventBus.weapon_fired.connect(_on_weapon_fired)
 	EventBus.player_footstep.connect(_on_player_footstep)
+	_load_footstep_sounds()
 
 
 # ── API pública ──────────────────────────────────────────────────────────────
@@ -82,8 +83,32 @@ func _on_weapon_fired(_weapon_id: String, position: Vector3) -> void:
 
 
 func _on_player_footstep(surface_type: String) -> void:
-	# TODO Sprint 2: cargar stream de pasos según surface_type
-	pass
+	var streams: Array = _footstep_streams.get(surface_type, _footstep_streams.get("concrete", []))
+	if streams.size() > 0:
+		var stream: AudioStream = streams[randi() % streams.size()]
+		var player := _get_sfx_player()
+		player.stream = stream
+		player.volume_db = -6.0
+		var p := get_tree().get_first_node_in_group("player")
+		if p:
+			player.global_position = p.global_position
+		player.play()
+
+
+# ── Footstep loading ────────────────────────────────────────────────────────
+
+var _footstep_streams: Dictionary = {}
+
+func _load_footstep_sounds() -> void:
+	var base_path := "res://assets/audio/sfx/footsteps/"
+	var surfaces := ["Asphalt", "Concrete", "Dirt", "Generic", "Grass", "Rock"]
+	for surface in surfaces:
+		var streams: Array[AudioStream] = []
+		for i in range(1, 9):
+			var path := base_path + "Footstep_%s_%02d.wav" % [surface, i]
+			if ResourceLoader.exists(path):
+				streams.append(load(path))
+		_footstep_streams[surface.to_lower()] = streams
 
 
 # ── Privado ──────────────────────────────────────────────────────────────────
