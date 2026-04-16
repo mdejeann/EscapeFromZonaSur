@@ -1,0 +1,154 @@
+{
+	"_comment": "Audio manifest for Escape From Zona Sur. Download these free assets and place in the listed paths.",
+	"sources": {
+		"freesound": "https://freesound.org",
+		"opengameart": "https://opengameart.org",
+		"license_note": "All listed sounds are CC0 or CC-BY (attribution required in credits)"
+	},
+	"ambient": [
+		{
+			"id": "birds_suburban",
+			"target_path": "res://assets/audio/ambient/birds_suburban.ogg",
+			"description": "Suburban morning with birds, calm atmosphere",
+			"freesound_ids": [762936, 745236, 763028],
+			"freesound_search": "birds suburban morning CC0",
+			"tags": ["birds", "suburban", "morning", "calm"]
+		},
+		{
+			"id": "suburban_desolate",
+			"target_path": "res://assets/audio/ambient/suburban_desolate.ogg",
+			"description": "Quiet suburban street, muffled distant traffic, post-apocalyptic emptiness",
+			"freesound_ids": [741725, 683558, 741606],
+			"freesound_search": "muffed suburban morning",
+			"tags": ["suburban", "quiet", "desolate", "muffled"]
+		},
+		{
+			"id": "urban_abandoned",
+			"target_path": "res://assets/audio/ambient/urban_abandoned.ogg",
+			"description": "Empty urban area, wind, distant creaking, broken glass",
+			"freesound_search": "abandoned urban wind creaking",
+			"tags": ["urban", "abandoned", "wind", "eerie"]
+		},
+		{
+			"id": "train_wind",
+			"target_path": "res://assets/audio/ambient/train_wind.ogg",
+			"description": "Wind through train station, metal creaking, open air tracks",
+			"freesound_search": "train station wind abandoned",
+			"tags": ["train", "station", "wind", "metal"]
+		},
+		{
+			"id": "hospital_eerie",
+			"target_path": "res://assets/audio/ambient/hospital_eerie.ogg",
+			"description": "Creepy hospital interior, distant dripping, fluorescent hum",
+			"freesound_search": "hospital eerie abandoned dripping",
+			"tags": ["hospital", "eerie", "dripping", "interior"]
+		},
+		{
+			"id": "rain_light",
+			"target_path": "res://assets/audio/ambient/rain_light.ogg",
+			"description": "Light rain on streets and rooftops",
+			"freesound_search": "light rain suburban",
+			"freesound_ids": [198293],
+			"tags": ["rain", "light", "suburban"]
+		},
+		{
+			"id": "night_crickets",
+			"target_path": "res://assets/audio/ambient/night_crickets.ogg",
+			"description": "Night time crickets and cicadas, common in Buenos Aires suburbs",
+			"freesound_search": "crickets night suburban",
+			"tags": ["crickets", "night", "insects"]
+		}
+	],
+	"sfx_footsteps": [
+		{
+			"id": "footstep_cobblestone",
+			"target_path": "res://assets/audio/sfx/footsteps/cobblestone/",
+			"description": "Footsteps on cobblestone/empedrado streets",
+			"freesound_ids": [823172, 695945],
+			"freesound_search": "cobblestone footsteps CC0",
+			"files_needed": 4,
+			"tags": ["footsteps", "cobblestone", "stone"]
+		},
+		{
+			"id": "footstep_concrete",
+			"target_path": "res://assets/audio/sfx/footsteps/concrete/",
+			"description": "Footsteps on concrete sidewalk/vereda",
+			"freesound_search": "concrete footsteps walk CC0",
+			"files_needed": 4,
+			"tags": ["footsteps", "concrete", "sidewalk"]
+		},
+		{
+			"id": "footstep_grass",
+			"target_path": "res://assets/audio/sfx/footsteps/grass/",
+			"description": "Footsteps on grass/overgrown terrain",
+			"freesound_search": "grass footsteps walk outdoor CC0",
+			"files_needed": 4,
+			"tags": ["footsteps", "grass", "outdoor"]
+		},
+		{
+			"id": "footstep_gravel",
+			"target_path": "res://assets/audio/sfx/footsteps/gravel/",
+			"description": "Footsteps on gravel train track bed",
+			"freesound_search": "gravel footsteps walk CC0",
+			"files_needed": 4,
+			"tags": ["footsteps", "gravel", "train"]
+		},
+		{
+			"id": "footstep_dirt",
+			"target_path": "res://assets/audio/sfx/footsteps/dirt/",
+			"description": "Footsteps on dry dirt",
+			"freesound_search": "dirt footsteps walk outdoor CC0",
+			"files_needed": 4,
+			"tags": ["footsteps", "dirt", "outdoor"]
+		},
+		{
+			"id": "footstep_metal",
+			"target_path": "res://assets/audio/sfx/footsteps/metal/",
+			"description": "Footsteps on metal (train platforms, vehicles)",
+			"freesound_search": "metal footsteps walk CC0",
+			"files_needed": 4,
+			"tags": ["footsteps", "metal", "industrial"]
+		}
+	],
+	"sfx_environment": [
+		{
+			"id": "door_creak",
+			"target_path": "res://assets/audio/sfx/environment/door_creak.ogg",
+			"description": "Old wooden/metal door creaking open",
+			"freesound_search": "old door creak open CC0"
+		},
+		{
+			"id": "glass_break",
+			"target_path": "res://assets/audio/sfx/environment/glass_break.ogg",
+			"description": "Window glass breaking",
+			"freesound_search": "glass window break shatter CC0"
+		},
+		{
+			"id": "metal_fence_rattle",
+			"target_path": "res://assets/audio/sfx/environment/fence_rattle.ogg",
+			"description": "Metal fence/reja rattling",
+			"freesound_search": "metal fence rattle chain CC0"
+		},
+		{
+			"id": "container_open",
+			"target_path": "res://assets/audio/sfx/environment/container_open.ogg",
+			"description": "Opening a drawer/crate/container",
+			"freesound_search": "drawer open crate wooden CC0"
+		},
+		{
+			"id": "item_pickup",
+			"target_path": "res://assets/audio/sfx/environment/item_pickup.ogg",
+			"description": "Picking up an item from ground/container",
+			"freesound_search": "item pickup grab CC0"
+		}
+	],
+	"opengameart_packs": [
+		{
+			"name": "Nature Sounds Pack by Antoinemax",
+			"url": "https://opengameart.org/content/nature-sounds-pack",
+			"contains": ["ambient nature", "foliage sounds", "footsteps", "stream water"],
+			"license": "CC0",
+			"useful_for": ["green_zone ambient", "grass footsteps", "nature atmosphere"]
+		}
+	]
+}

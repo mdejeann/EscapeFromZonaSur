@@ -33,12 +33,12 @@ func roll_table(table_id: String) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 
 	for _i in range(rolls):
-		var entry := _weighted_random(entries)
+		var entry: Dictionary = _weighted_random(entries)
 		if entry.is_empty():
 			continue
-		var item := _get_item(entry["id"])
+		var item: Resource = _get_item(entry["id"])
 		if item:
-			var qty := randi_range(entry.get("min", 1), entry.get("max", 1))
+			var qty: int = randi_range(entry.get("min", 1), entry.get("max", 1))
 			result.append({"item": item, "quantity": qty})
 
 	return result
@@ -56,12 +56,12 @@ func _load_tables() -> void:
 		_tables = json.data.get("loot_tables", {})
 
 
-func _get_item(item_id: String) -> ItemData:
+func _get_item(item_id: String) -> Resource:
 	if _item_cache.has(item_id):
 		return _item_cache[item_id]
 	var path := items_base_path + item_id + ".tres"
 	if ResourceLoader.exists(path):
-		var item := ResourceLoader.load(path) as ItemData
+		var item: Resource = ResourceLoader.load(path)
 		_item_cache[item_id] = item
 		return item
 	push_warning("LootSystem: ítem '%s' no encontrado en '%s'" % [item_id, path])

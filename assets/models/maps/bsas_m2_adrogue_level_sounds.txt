@@ -1,0 +1,461 @@
+"Simuladores.Tv"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"	"SNDLVL_75dB"
+	"volume"		"1.0"
+	"rndwave"
+	{
+		"wave"		")buenosaires/simuladores.wav"
+	}
+}
+
+"Bass.Miss"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_bass/bass_swing_miss1.wav"
+		"wave"		")weapons/roku_bass/bass_swing_miss2.wav"
+	}
+}
+
+"Bass.ImpactFlesh"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"volume"		"0.80,0.90"
+	"pitch"			"95,105"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_bass/bass_guitar_01.wav"
+		"wave"		")weapons/roku_bass/bass_guitar_02.wav"
+		"wave"		")weapons/roku_bass/bass_guitar_03.wav"
+		"wave"		")weapons/roku_bass/bass_guitar_04.wav"
+		"wave"		")weapons/roku_bass/bass_guitar_05.wav"
+		"wave"		")weapons/roku_bass/bass_guitar_06.wav"
+	}
+}
+
+"Bass.ImpactWorld"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"volume"		"0.85"
+	"pitch"			"95,105"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_bass/bass_hit_world_01.wav"
+		"wave"		")weapons/roku_bass/bass_hit_world_02.wav"
+		"wave"		")weapons/roku_bass/bass_hit_world_03.wav"
+		"wave"		")weapons/roku_bass/bass_hit_world_04.wav"
+	}
+}
+
+
+"Cymbal.Miss"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_cymbal/cymbal_miss01.wav"
+		"wave"		")weapons/roku_cymbal/cymbal_miss02.wav"
+	}
+}
+
+"Cymbal.ImpactFlesh"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"volume"		"0.80,0.95"
+	"pitch"		"95,105"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_cymbal/cymbal_hit_flesh01.wav"
+		"wave"		")weapons/roku_cymbal/cymbal_hit_flesh02.wav"
+		"wave"		")weapons/roku_cymbal/cymbal_hit_flesh03.wav"
+	}
+}
+
+"Cymbal.ImpactWorld"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"pitch"		"95,105"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_cymbal/cymbal_hit_flesh01.wav"
+		"wave"		")weapons/roku_cymbal/cymbal_hit_flesh02.wav"
+	}
+}
+
+"Basto.Miss"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"pitch"			"95,100"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_bass/bass_swing_miss1.wav"
+		"wave"		")weapons/roku_bass/bass_swing_miss2.wav"
+	}
+}
+
+"Basto.ImpactFlesh"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"volume"		"0.9,0.95"
+	"pitch"			"90,95"
+	"rndwave"
+	{
+		"wave"		")weapons/basto/basto_impact_flesh1.wav"
+		"wave"		")weapons/basto/basto_impact_flesh2.wav"
+		"wave"		")weapons/basto/basto_impact_flesh3.wav"
+		"wave"		")weapons/basto/basto_impact_flesh4.wav"
+	}
+}
+
+"Basto.ImpactWorld"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"volume"		"0.9"
+	"pitch"			"90,95"
+	"rndwave"
+	{
+		"wave"		")weapons/basto/basto_hit_world1.wav"
+		"wave"		")weapons/basto/basto_hit_world2.wav"
+	}
+}
+
+"Close.Gate01"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_close01.wav" 
+}
+
+"Close.Gate01a"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_close01a.wav" 
+}
+
+"Close.Gate01b"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_close01b.wav" 
+}
+
+"Close.Gate02"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_close02.wav" 
+}
+
+"Close.Gate03"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_close03.wav" 
+}
+
+"Close.Gate04"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_close04.wav" 
+}
+
+"Open.Gate01"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_open01.wav" 
+}
+
+"Open.Gate02"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_open02.wav" 
+}
+
+"Open.Gate03"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_open03.wav" 
+}
+
+"Open.Gate04"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_open04.wav" 
+}
+
+"Close.Heavy01"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_heavy_close01.wav" 
+}
+
+"Open.Heavy01"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_heavy_open01.wav" 
+}
+
+"Close.Hospital01"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_hospital_close01.wav" 
+}
+
+"Open.Hospital01"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_hospital_open01.wav" 
+}
+
+"Close.Metal01"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_metal_close01.wav" 
+}
+
+"Close.Metal02"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_metal_close02.wav" 
+}
+
+"Close.Metal03"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_metal_close03.wav" 
+}
+
+"Close.Metal04"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_metal_close04.wav" 
+}
+
+"Open.Metal01"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_metal_open01.wav" 
+}
+
+"Open.Metal02"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_metal_open02.wav" 
+}
+
+"Open.Metal03"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_metal_open03.wav" 
+}
+
+"Open.Metal04"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_metal_open04.wav" 
+}
+
+"Close.Hall"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_raccoon_hall_close.wav" 
+}
+
+"Open.Hall"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_raccoon_hall_open.wav" 
+}
+
+"Close.RPD"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_rpd_close.wav" 
+}
+
+"Open.RPD"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_rpd_open.wav" 
+}
+
+"Close.Shop"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_shop_close01.wav" 
+}
+
+"Open.Shop"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_shop_open01.wav" 
+}
+
+"Close.Wood01"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_wood_close01.wav" 
+}
+
+"Close.Wood02"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_wood_close02.wav" 
+}
+
+"Close.Wood03"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_wood_close03.wav" 
+}
+
+"Close.Wood03a"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_wood_close03a.wav" 
+}
+
+"Close.Wood03b"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_wood_close03b.wav" 
+}
+
+"Open.Wood01"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_wood_Open01.wav" 
+}
+
+"Open.Wood02"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_wood_Open02.wav" 
+}
+
+"Open.Wood03"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_wood_Open03.wav" 
+}
+
+"Locked.Wood"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/locked_wood.wav" 
+}
+
+"Locked.Metal"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/locked_metal.wav" 
+}
+
+
+"Door.Metal.Pound01"
+{
+	"volume"		"0.8"
+	"soundlevel"	"SNDLVL_60dB"
+	"pitch"			"95,105"
+
+	"rndwave"
+	{
+		"wave" "doors/Hit_KickMetalDoor1.wav"
+		"wave" "doors/Hit_KickMetalDoor2.wav"
+	}
+}
+
+"Door.Wood.Pound01"
+{
+	"volume"		"0.8"
+	"soundlevel"	"SNDLVL_60dB"
+	"pitch"			"95,105"
+
+	"rndwave"
+	{
+		"wave" "physics/wood/wood_panel_impact_hard1.wav"
+	}
+}

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/systems/inventory/ItemData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "armor_vest"
+display_name = "Chaleco antibalas desgastado"
+description = "Chaleco táctico viejo pero funcional. Reduce daño recibido al torso."
+item_type = 2
+weight = 3.0
+max_stack = 1
+base_value = 3000
+has_durability = true
+max_durability = 80.0

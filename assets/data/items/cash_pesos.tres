@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/systems/inventory/ItemData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "cash_pesos"
+display_name = "Fajos de pesos"
+description = "Billetes argentinos. Moneda de intercambio con comerciantes."
+item_type = 6
+weight = 0.1
+max_stack = 99999
+base_value = 1
+has_durability = false
+max_durability = 100.0

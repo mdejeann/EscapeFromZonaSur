@@ -1,80 +1,80 @@
 {
   "loot_tables": {
-    "generic": {
-      "rolls": 2,
-      "entries": [
-        {"id": "cash_pesos",    "weight": 50, "min": 100,  "max": 500},
-        {"id": "food_alfajor",  "weight": 30, "min": 1,    "max": 2},
-        {"id": "bandage",       "weight": 20, "min": 1,    "max": 1}
-      ]
-    },
-    "residential_house": {
-      "rolls": 3,
-      "entries": [
-        {"id": "food_alfajor",  "weight": 30, "min": 1,    "max": 3},
-        {"id": "bandage",       "weight": 20, "min": 1,    "max": 2},
-        {"id": "cash_pesos",    "weight": 40, "min": 100,  "max": 500},
-        {"id": "medkit_basic",  "weight": 10, "min": 1,    "max": 1}
-      ]
-    },
-    "police_station": {
-      "rolls": 5,
-      "entries": [
-        {"id": "pistol_9mm",    "weight": 15, "min": 1,    "max": 1},
-        {"id": "ammo_9mm",      "weight": 35, "min": 10,   "max": 30},
-        {"id": "armor_vest",    "weight": 10, "min": 1,    "max": 1},
-        {"id": "bandage",       "weight": 40, "min": 2,    "max": 5}
-      ]
-    },
-    "train_station": {
-      "rolls": 4,
-      "entries": [
-        {"id": "cash_pesos",    "weight": 50, "min": 200,  "max": 2000},
-        {"id": "food_alfajor",  "weight": 30, "min": 2,    "max": 5},
-        {"id": "medkit_basic",  "weight": 20, "min": 1,    "max": 1}
-      ]
-    },
-    "industrial_zone": {
-      "rolls": 4,
-      "entries": [
-        {"id": "ammo_9mm",      "weight": 30, "min": 5,    "max": 20},
-        {"id": "cash_pesos",    "weight": 25, "min": 50,   "max": 300},
-        {"id": "bandage",       "weight": 30, "min": 1,    "max": 3},
-        {"id": "armor_vest",    "weight": 15, "min": 1,    "max": 1}
-      ]
-    },
-    "enemy_bonaerense": {
-      "rolls": 2,
-      "entries": [
-        {"id": "ammo_9mm",      "weight": 40, "min": 5,    "max": 15},
-        {"id": "cash_pesos",    "weight": 35, "min": 100,  "max": 800},
-        {"id": "bandage",       "weight": 25, "min": 1,    "max": 2}
-      ]
-    },
-    "enemy_banda": {
-      "rolls": 2,
-      "entries": [
-        {"id": "cash_pesos",    "weight": 50, "min": 50,   "max": 400},
-        {"id": "food_alfajor",  "weight": 30, "min": 1,    "max": 3},
-        {"id": "ammo_9mm",      "weight": 20, "min": 3,    "max": 10}
-      ]
-    },
-    "enemy_survivor": {
-      "rolls": 1,
-      "entries": [
-        {"id": "food_alfajor",  "weight": 40, "min": 1,    "max": 2},
-        {"id": "bandage",       "weight": 35, "min": 1,    "max": 1},
-        {"id": "cash_pesos",    "weight": 25, "min": 50,   "max": 200}
-      ]
-    },
-    "enemy_narco": {
-      "rolls": 3,
-      "entries": [
-        {"id": "cash_pesos",    "weight": 40, "min": 500,  "max": 3000},
-        {"id": "ammo_9mm",      "weight": 30, "min": 10,   "max": 30},
-        {"id": "pistol_9mm",    "weight": 10, "min": 1,    "max": 1},
-        {"id": "medkit_basic",  "weight": 20, "min": 1,    "max": 1}
-      ]
-    }
+	"generic": {
+	  "rolls": 2,
+	  "entries": [
+		{"id": "cash_pesos",    "weight": 50, "min": 100,  "max": 500},
+		{"id": "food_alfajor",  "weight": 30, "min": 1,    "max": 2},
+		{"id": "bandage",       "weight": 20, "min": 1,    "max": 1}
+	  ]
+	},
+	"residential_house": {
+	  "rolls": 3,
+	  "entries": [
+		{"id": "food_alfajor",  "weight": 30, "min": 1,    "max": 3},
+		{"id": "bandage",       "weight": 20, "min": 1,    "max": 2},
+		{"id": "cash_pesos",    "weight": 40, "min": 100,  "max": 500},
+		{"id": "medkit_basic",  "weight": 10, "min": 1,    "max": 1}
+	  ]
+	},
+	"police_station": {
+	  "rolls": 5,
+	  "entries": [
+		{"id": "pistol_9mm",    "weight": 15, "min": 1,    "max": 1},
+		{"id": "ammo_9mm",      "weight": 35, "min": 10,   "max": 30},
+		{"id": "armor_vest_basic", "weight": 10, "min": 1,    "max": 1},
+		{"id": "bandage",       "weight": 40, "min": 2,    "max": 5}
+	  ]
+	},
+	"train_station": {
+	  "rolls": 4,
+	  "entries": [
+		{"id": "cash_pesos",    "weight": 50, "min": 200,  "max": 2000},
+		{"id": "food_alfajor",  "weight": 30, "min": 2,    "max": 5},
+		{"id": "medkit_basic",  "weight": 20, "min": 1,    "max": 1}
+	  ]
+	},
+	"industrial_zone": {
+	  "rolls": 4,
+	  "entries": [
+		{"id": "ammo_9mm",      "weight": 30, "min": 5,    "max": 20},
+		{"id": "cash_pesos",    "weight": 25, "min": 50,   "max": 300},
+		{"id": "bandage",       "weight": 30, "min": 1,    "max": 3},
+		{"id": "armor_vest_basic", "weight": 15, "min": 1,    "max": 1}
+	  ]
+	},
+	"enemy_bonaerense": {
+	  "rolls": 2,
+	  "entries": [
+		{"id": "ammo_9mm",      "weight": 40, "min": 5,    "max": 15},
+		{"id": "cash_pesos",    "weight": 35, "min": 100,  "max": 800},
+		{"id": "bandage",       "weight": 25, "min": 1,    "max": 2}
+	  ]
+	},
+	"enemy_banda": {
+	  "rolls": 2,
+	  "entries": [
+		{"id": "cash_pesos",    "weight": 50, "min": 50,   "max": 400},
+		{"id": "food_alfajor",  "weight": 30, "min": 1,    "max": 3},
+		{"id": "ammo_9mm",      "weight": 20, "min": 3,    "max": 10}
+	  ]
+	},
+	"enemy_survivor": {
+	  "rolls": 1,
+	  "entries": [
+		{"id": "food_alfajor",  "weight": 40, "min": 1,    "max": 2},
+		{"id": "bandage",       "weight": 35, "min": 1,    "max": 1},
+		{"id": "cash_pesos",    "weight": 25, "min": 50,   "max": 200}
+	  ]
+	},
+	"enemy_narco": {
+	  "rolls": 3,
+	  "entries": [
+		{"id": "cash_pesos",    "weight": 40, "min": 500,  "max": 3000},
+		{"id": "ammo_9mm",      "weight": 30, "min": 10,   "max": 30},
+		{"id": "pistol_9mm",    "weight": 10, "min": 1,    "max": 1},
+		{"id": "medkit_basic",  "weight": 20, "min": 1,    "max": 1}
+	  ]
+	}
   }
 }

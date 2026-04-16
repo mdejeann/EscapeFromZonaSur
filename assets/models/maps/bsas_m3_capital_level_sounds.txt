@@ -1,0 +1,281 @@
+"RadioRoku.Loop1"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"1.0"
+	"soundlevel"		"SNDLVL_85dB"
+	"rndwave"
+	{
+		"wave"		")buenosaires/radio/roku_hola01.wav"
+		"wave"		")buenosaires/radio/roku_hola02.wav"
+		"wave"		")buenosaires/radio/roku_hola03.wav"
+		"wave"		")buenosaires/radio/roku_hola04.wav"
+		"wave"		")buenosaires/radio/roku_hola05.wav"
+	}
+}
+
+"RadioRoku.Respuesta1"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NONE"
+	"rndwave"
+	{
+		"wave"		")buenosaires/radio/roku_obelisco01.wav"
+		"wave"		")buenosaires/radio/roku_obelisco02.wav"
+	}
+}
+
+"RadioRoku.Respuesta2"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NONE"
+	"rndwave"
+	{
+		"wave"		")buenosaires/radio/roku_retiro01.wav"
+		"wave"		")buenosaires/radio/roku_retiro02.wav"
+	}
+}
+
+"Cambalache.Silencio"
+{
+	"channel"		"CHAN_STATIC"
+	"volume"		"1.0"
+	"soundlevel"  	"SNDLVL_150dB"
+	"pitch"			"PITCH_NORM"
+	"wave"			")music/silencio.wav"
+	
+	GameData
+	{
+		"MusicTrack"            "default"
+		"MusicDuckTrackList"    "all"
+		"MusicBlockTrackList"   "zombat, zombat2, zombat3, zombatIntro, ambient"
+		"MusicStopTrackList"    "zombat, zombat2, zombat3, zombatIntro, ambient"
+		"MusicMaster"		"PLAY_SPLIT"
+	}
+}
+
+"Cambalache.Entero"
+{
+	"channel"		"CHAN_STATIC"
+	"volume"		"1.0"
+	"soundlevel"  	"SNDLVL_150dB"
+	"pitch"			"PITCH_NORM"
+	"wave"			")buenosaires/cambalache_entero.wav"
+}
+
+"Cambalache.Radio"
+{
+	"channel"		"CHAN_STATIC"
+	"volume"		"1.0"
+	"soundlevel"  	"SNDLVL_80dB"
+	"pitch"			"PITCH_NORM"
+	"wave"			")buenosaires/cambalache_entero.wav"
+}
+
+
+"Mata.Bebe"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"rndwave"
+	{
+		"wave"		")buenosaires/mata_bebe1.wav"
+		"wave"		")buenosaires/mata_bebe2.wav"
+		"wave"		")buenosaires/mata_bebe3.wav"
+		"wave"		")buenosaires/mata_bebe4.wav"
+	}
+}
+
+"Tank.Ceda"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"rndwave"
+	{
+		"wave"		")player/tank/voice/idle/tank_breathe_04.wav"
+		"wave"		")player/tank/voice/idle/tank_breathe_05.wav"
+		"wave"		")player/tank/voice/idle/tank_growl_01.wav"
+		"wave"		")player/tank/voice/idle/tank_growl_02.wav"
+	}
+}
+
+"Bass.Miss"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_bass/bass_swing_miss1.wav"
+		"wave"		")weapons/roku_bass/bass_swing_miss2.wav"
+	}
+}
+
+"Bass.ImpactFlesh"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"volume"		"0.80,0.90"
+	"pitch"			"95,105"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_bass/bass_guitar_01.wav"
+		"wave"		")weapons/roku_bass/bass_guitar_02.wav"
+		"wave"		")weapons/roku_bass/bass_guitar_03.wav"
+		"wave"		")weapons/roku_bass/bass_guitar_04.wav"
+		"wave"		")weapons/roku_bass/bass_guitar_05.wav"
+		"wave"		")weapons/roku_bass/bass_guitar_06.wav"
+	}
+}
+
+"Bass.ImpactWorld"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"volume"		"0.85"
+	"pitch"			"95,105"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_bass/bass_hit_world_01.wav"
+		"wave"		")weapons/roku_bass/bass_hit_world_02.wav"
+		"wave"		")weapons/roku_bass/bass_hit_world_03.wav"
+		"wave"		")weapons/roku_bass/bass_hit_world_04.wav"
+	}
+}
+
+
+"Cymbal.Miss"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_cymbal/cymbal_miss01.wav"
+		"wave"		")weapons/roku_cymbal/cymbal_miss02.wav"
+	}
+}
+
+"Cymbal.ImpactFlesh"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"volume"		"0.80,0.95"
+	"pitch"		"95,105"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_cymbal/cymbal_hit_flesh01.wav"
+		"wave"		")weapons/roku_cymbal/cymbal_hit_flesh02.wav"
+		"wave"		")weapons/roku_cymbal/cymbal_hit_flesh03.wav"
+	}
+}
+
+"Cymbal.ImpactWorld"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"pitch"		"95,105"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_cymbal/cymbal_hit_flesh01.wav"
+		"wave"		")weapons/roku_cymbal/cymbal_hit_flesh02.wav"
+	}
+}
+
+"Basto.Miss"
+{
+	"channel"		"CHAN_WEAPON"
+	"soundlevel"		"SNDLVL_NORM"
+	"pitch"			"95,100"
+	"rndwave"
+	{
+		"wave"		")weapons/roku_bass/bass_swing_miss1.wav"
+		"wave"		")weapons/roku_bass/bass_swing_miss2.wav"
+	}
+}
+
+"Basto.ImpactFlesh"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"volume"		"0.9,0.95"
+	"pitch"			"90,95"
+	"rndwave"
+	{
+		"wave"		")weapons/basto/basto_impact_flesh1.wav"
+		"wave"		")weapons/basto/basto_impact_flesh2.wav"
+		"wave"		")weapons/basto/basto_impact_flesh3.wav"
+		"wave"		")weapons/basto/basto_impact_flesh4.wav"
+	}
+}
+
+"Basto.ImpactWorld"
+{
+	"channel"		"CHAN_STATIC"
+	"soundlevel"		"SNDLVL_TALKING"
+	"volume"		"0.9"
+	"pitch"			"90,95"
+	"rndwave"
+	{
+		"wave"		")weapons/basto/basto_hit_world1.wav"
+		"wave"		")weapons/basto/basto_hit_world2.wav"
+	}
+}
+
+"Close.Gate02"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_close02.wav" 
+}
+
+"Open.Gate02"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_gate_open02.wav" 
+}
+
+"Close.Metal01"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_metal_close01.wav" 
+}
+
+"Open.Metal02"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_metal_open02.wav" 
+}
+
+"Close.Shop"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_shop_close01.wav" 
+}
+
+"Open.Shop"
+{
+	"channel"		"CHAN_BODY"
+	"volume"		"1.0"
+	"soundlevel"	"SNDLVL_75dB"
+	"wave"	"re_doors/door_shop_open01.wav" 
+}
+
+"Door.Metal.Pound01"
+{
+	"volume"		"0.8"
+	"soundlevel"	"SNDLVL_60dB"
+	"pitch"			"95,105"
+
+	"rndwave"
+	{
+		"wave" "doors/Hit_KickMetalDoor1.wav"
+		"wave" "doors/Hit_KickMetalDoor2.wav"
+	}
+}
